@@ -1,13 +1,19 @@
-name: Deploy Vite site to Pages
+name: Deploy Vite site to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+  workflow_dispatch:
 
+# Permissões necessárias pro Pages
 permissions:
   contents: read
   pages: write
   id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -15,22 +21,41 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      # Node (troque por Bun se preferir)
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install
+        run: npm ci
 
-      - name: Upload build
+      - name: Build
+        run: npm run build
+        # garanta no package.json: "build": "vite build"
+
+      # Inclui CNAME e .nojekyll no artefato (se existirem no root do repo)
+      - name: Include CNAME and .nojekyll
+        run: |
+          if [ -f CNAME ]; then cp CNAME dist/; fi
+          if [ -f .nojekyll ]; then cp .nojekyll dist/; fi
+
+      # SPA fallback (React Router): 404.html -> index.html
+      - name: SPA 404 fallback
+        run: cp dist/index.html dist/404.html
+
+      - name: Upload artifact to Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: dist
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # 👇 ESSA É A PARTE QUE FALTAVA
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - id: deployment
         uses: actions/deploy-pages@v4
