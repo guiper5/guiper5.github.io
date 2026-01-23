@@ -33,10 +33,7 @@ const About = () => {
             Quem Somos
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            A <strong>PER5</strong> é uma empresa especializada em engenharia de infraestrutura, 
-            atuando com excelência na elaboração de projetos técnicos, consultorias e gestão de obras. 
-            Com foco em <strong>eficiência</strong>, <strong>inovação</strong> e <strong>soluções personalizadas</strong>, 
-            entregamos resultados que respeitam o prazo, o orçamento e as exigências técnicas de cada cliente.
+            Na PER5, transformamos <strong>desafios de engenharia</strong> em <strong>soluções integradas</strong> de <strong>infraestrutura</strong> e <strong>regularização</strong>. Do <strong>diagnóstico preciso de patologias</strong> à <strong>aprovação de loteamentos e condomínios</strong>, nossa atuação é pautada pelas <strong>normas vigentes</strong> e pelas <strong>melhores práticas do mercado</strong>. Unimos a experiência em <strong>engenharia diagnóstica</strong> à inovação do <strong>openBIM</strong> para oferecer uma <strong>gestão de projetos transparente e interoperável</strong>. Somos <strong>parceiros estratégicos</strong> que asseguram a <strong>viabilidade de cada obra</strong>, respeitando <strong>prazos</strong>, <strong>orçamentos</strong> e as <strong>exigências técnicas mais rigorosas</strong>.
           </p>
         </div>
 

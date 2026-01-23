@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import heroImage from '@/assets/hero-blueprints.jpg';
+import heroImage from '@/assets/hero-blueprints.png';
 
 const Hero = () => {
   return (
@@ -19,14 +19,14 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <div className="max-w-4xl mx-auto animate-fade-in">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Especialistas em Projetos e 
-            <span className="block text-accent">Gestão de Obras</span> 
-            de Infraestrutura
+            Regularização, 
+            <span className="block text-accent">OpenBIM</span> 
+            e Infraestrutura
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Da concepção ao planejamento: soluções técnicas completas em 
-            <strong> engenharia civil</strong> para seus projetos de infraestrutura.
+            Engenharia civil com foco em inovação e soluções completas.
+            Atuamos com regularização de imóveis e loteamentos, projetos de infraestrutura, consultoria técnica e OpenBIM.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -64,10 +64,10 @@ const Hero = () => {
             Experiência Comprovada Em
           </p>
           <div className="flex flex-wrap justify-center gap-8 text-white/80 text-sm">
-            <span>• Terraplenagem</span>
-            <span>• Drenagem</span>
-            <span>• Pavimentação</span>
-            <span>• Gestão de Obras</span>
+            <span>• Regularização</span>
+            <span>• Projetos de Infraestrutura</span>
+            <span>• Consultoria e análise de patologias</span>
+            <span>• OpenBIM</span>
             <span>• Consultoria Técnica</span>
           </div>
         </div>

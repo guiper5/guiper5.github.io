@@ -2,7 +2,7 @@ import { MessageCircle, Instagram, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground py-12">
+    <footer className="bg-[#4F4744] text-white py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
@@ -14,8 +14,8 @@ const Footer = () => {
               <h3 className="text-xl font-bold">PER5 PROJETOS E CONSULTORIA</h3>
             </div>
             <p className="text-primary-foreground/80 mb-4 leading-relaxed">
-              Especialistas em engenharia de infraestrutura, projetos técnicos, 
-              consultorias e gestão de obras com foco em excelência e inovação.
+              Especialistas em engenharia de infraestrutura, projetos técnicos e 
+              consultorias com foco em excelência e inovação.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -47,12 +47,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Nossos Serviços</h4>
             <ul className="space-y-2 text-primary-foreground/80">
-              <li>Projetos de Terraplenagem</li>
-              <li>Drenagem e Pavimentação</li>
-              <li>Gestão de Obras</li>
-              <li>Consultoria Especializada</li>
-              <li>Estudos de Viabilidade</li>
-              <li>Planejamento Orçamentário</li>
+              <li>Projetos de Infraestrutura</li>
+              <li>Consultoria em Patologias</li>
+              <li>Regularização de Imóveis</li>
+              <li>OpenBIM</li>
             </ul>
           </div>
 
@@ -91,9 +89,9 @@ const Footer = () => {
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60">
-            <p>© 2024 PER5 Projetos e Consultoria. Todos os direitos reservados.</p>
+            <p>© 2026 PER5 Projetos e Consultoria. Todos os direitos reservados.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
-              <span>Campinas e Região • Engenharia Civil • Infraestrutura</span>
+              <span>Transformamos desafios em soluções sustentáveis e inteligentes.</span>
             </div>
           </div>
         </div>

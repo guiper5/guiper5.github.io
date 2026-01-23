@@ -5,34 +5,35 @@ import {
   Compass, 
   ClipboardCheck, 
   Settings,
-  ArrowRight 
+  ArrowRight, 
+  ShieldAlert
 } from 'lucide-react';
 
 const Services = () => {
   const services = [
     {
       icon: Building2,
-      title: 'Projetos Técnicos de Infraestrutura',
-      description: 'Terraplenagem, Drenagem e Pavimentação com base técnica e precisão.',
-      features: ['Estudos topográficos', 'Projetos executivos', 'Memorial descritivo', 'Plantas técnicas']
+      title: 'Projetos de Infraestrutura',
+      description: 'Projetos de Infraestrutura com Foco em Executabilidade.',
+      features: ['Terraplenagem: Volumetria com otimização de movimentação de terra', 'Drenagem: Redes e dispositivos de captação, Drenagem sustentável LID', 'Saneamento: Sistemas de abastecimento de água potável e coleta de esgoto', 'Pavimentação: Asfalto, Concreto, Intertravado, Permeável, Geométricos, Acessos Rodoviários e as-built']
     },
     {
-      icon: Compass,
-      title: 'Consultoria Especializada',
-      description: 'Estudos Preliminares e Viabilidade Técnica para tomada de decisão segura.',
-      features: ['Análise de viabilidade', 'Estudos ambientais', 'Parecer técnico', 'Assessoria técnica']
+      icon: ShieldAlert,
+      title: 'Consultoria em Patologias',
+      description: 'Engenharia Diagnóstica: Ciência a Serviço da Longevidade.',
+      features: ['Visitas técnicas', 'Diagnóstico', 'Relatórios especializados', 'Soluções para prevenção e correção']
     },
     {
       icon: ClipboardCheck,
-      title: 'Gestão de Obras',
-      description: 'Planejamento, controle orçamentário e engenharia de custos eficiente.',
-      features: ['Cronograma físico-financeiro', 'Controle de qualidade', 'Medições', 'Acompanhamento técnico']
+      title: 'Regularização de Imóveis e Loteamentos',
+      description: 'Regularização técnica e documental para garantir conformidade e viabilidade do imóvel e do Loteamento.',
+      features: [ 'Habite-se, Alvarás, Registro de Imóveis e Receita Federal', 'Desmembramentos, unificações e adequações legais', 'Estudos técnicos e de viabilidade', 'Projetos Urbanísticos']
     },
     {
       icon: Settings,
-      title: 'Serviços Personalizados',
-      description: 'Soluções sob medida conforme a necessidade do cliente.',
-      features: ['Projetos especiais', 'Laudos técnicos', 'Perícias', 'Consultoria específica']
+      title: 'OpenBIM',
+      description: 'Projetos desenvolvidos em padrão IFC para total interoperabilidade',
+      features: ['Consultoria, implantação e treinamentos de metodologia OpenBIM', 'Coordenação e auditoria de projetos e modelos (IFC, IDS, BCF)', 'Modelagem, Scan-to-BIM em IFC nativo', '⁠Gestão de informações em projetos de construção (ISO 19650)']
     }
   ];
 
@@ -106,10 +107,10 @@ const Services = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
-              { step: '01', title: 'Análise', desc: 'Estudo das necessidades e viabilidade' },
-              { step: '02', title: 'Planejamento', desc: 'Desenvolvimento do projeto técnico' },
-              { step: '03', title: 'Execução', desc: 'Acompanhamento e gestão da obra' },
-              { step: '04', title: 'Entrega', desc: 'Conclusão e documentação final' }
+              { step: '01', title: 'Inteligência de Dados', desc: 'Transformamos necessidades em diretrizes técnicas e legais claras.' },
+              { step: '02', title: 'Engenharia Integrada', desc: 'Projetamos soluções em BIM para antecipar problemas e otimizar custos de infraestrutura.' },
+              { step: '03', title: 'Rigor Executivo', desc: 'Gestão focada na performance da obra e na mitigação de riscos patológicos.' },
+              { step: '04', title: 'Ativos Valorizados', desc: 'Entrega de Projeto compatibilizados e prontos para execução' }
             ].map((process, index) => (
               <div key={index} className="text-center p-6">
                 <div className="w-12 h-12 gradient-cta rounded-full flex items-center justify-center mx-auto mb-4">

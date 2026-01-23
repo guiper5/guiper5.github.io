@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Instagram, MessageCircle, MapPin, Clock, Phone } from 'lucide-react';
+import { Mail, Instagram, MessageCircle, MapPin, Clock, Phone, Linkedin } from 'lucide-react';
 
 const Contact = () => {
   const contactMethods = [
@@ -27,11 +27,11 @@ const Contact = () => {
       link: 'https://www.instagram.com/per5eng/'
     },
     {
-      icon: Phone,
-      title: 'Telefone',
-      description: 'Ligue para nós',
-      value: '(19) 99150-8664',
-      link: 'tel:+5519991508664'
+      icon: Linkedin,
+      title: 'Linkedin',
+      description: 'Acesse nosso perfil corporativo',
+      value: '@per5',
+      link: 'https://www.linkedin.com/company/per5/ '
     }
   ];
 
@@ -113,10 +113,7 @@ const Contact = () => {
                   </h3>
                 </div>
                 <div className="space-y-2 text-muted-foreground">
-                  <p><strong>Toda a região de Campinas</strong></p>
-                  <p>• Americana • Sumaré • Hortolândia</p>
-                  <p>• Indaiatuba • Paulínia • Valinhos</p>
-                  <p><strong>Outras regiões:</strong> A consultar</p>
+                  <p><strong>Todo o Brasil</strong></p>
                 </div>
               </CardContent>
             </Card>

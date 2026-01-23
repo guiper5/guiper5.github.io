@@ -76,10 +76,10 @@ const CTA = () => {
           {/* Trust Badge */}
           <div className="mt-12 p-6 bg-primary/5 rounded-lg border border-primary/20">
             <p className="text-primary text-sm mb-2">
-              <strong>Atendemos Campinas e Região</strong>
+              <strong>Atendemos todo o Brasil</strong>
             </p>
             <p className="text-muted-foreground text-xs">
-              Projetos de terraplenagem • Drenagem • Pavimentação • Gestão de obras • Consultoria técnica
+              Projetos de Infraestrutura • Consultoria em Patologias • Regularização de Imóveis e Loteamentos • OpenBIM 
             </p>
           </div>
         </div>
