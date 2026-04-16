@@ -1,0 +1,471 @@
+/*
+  PER5 Projetos e Consultoria — Design System
+  Extraído da identidade visual oficial (logo Per5_fundo_marrom)
+  ============================================================
+*/
+
+/* ─── Google Fonts ────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ─── Cores extraídas da logo ─────────────────────────────── */
+/*
+  Cor              Hex       Origem na logo
+  ─────────────────────────────────────────────────────────────
+  Marrom Escuro    #3C3428   Background principal da logo
+  Sombra Profunda  #2A2319   Perspectiva/sombra interna do ícone
+  Cobre Principal  #C87941   Face frontal do ícone (cor primária)
+  Cobre Sombra     #9E5C28   Face inferior do ícone (perspectiva)
+  Branco Quente    #F5F0EB   Texto "Per5" (não é branco puro)
+  Bege Tipografia  #C8B89A   Subtítulo "PROJETOS E CONSULTORIA"
+*/
+
+:root {
+
+    /* ── Cores primárias (da logo) ── */
+    --per5-dark: #3C3428;
+    /* fundo dark, navbar, footer, overlay hero */
+    --per5-darker: #2A2319;
+    /* hover em dark, sombras profundas */
+    --per5-copper: #C87941;
+    /* CTA primário, botões, links, destaques */
+    --per5-copper-hover: #E08B50;
+    /* hover do botão (+15% lightness) */
+    --per5-copper-dark: #9E5C28;
+    /* pressed/active, badges escuros */
+    --per5-copper-pale: #F5E8D8;
+    /* background suave, badges, sections alternadas */
+    --per5-offwhite: #F5F0EB;
+    /* background principal das páginas */
+    --per5-sand: #C8B89A;
+    /* labels e textos sobre fundo escuro */
+
+    /* ── Escala de neutros quentes (derivada da logo) ── */
+    --per5-neutral-900: #3C3428;
+    /* títulos sobre fundo claro */
+    --per5-neutral-700: #6B6055;
+    /* corpo de texto, parágrafos */
+    --per5-neutral-500: #9C8E82;
+    /* placeholder, textos terciários */
+    --per5-neutral-300: #C8B89A;
+    /* labels sobre dark */
+    --per5-neutral-100: #EDE6DC;
+    /* bordas, divisores, separadores */
+    --per5-neutral-50: #F5F0EB;
+    /* off-white, background de página */
+
+    /* ── Cores complementares ── */
+    --per5-green: #4A6741;
+    /* sucesso, ART, aprovação (análogo ao terra) */
+    --per5-green-pale: #E8F0E8;
+    /* background de badge de sucesso */
+    --per5-amber: #D4A853;
+    /* aviso, prazo, alerta (análogo ao cobre) */
+    --per5-amber-pale: #FBF2DC;
+    /* background de badge de aviso */
+    --per5-earth: #7A4F35;
+    /* terra média, ícones secundários */
+
+    /* ── Surfaces e cards ── */
+    --per5-surface: #FFFFFF;
+    /* cards, formulários, modais */
+    --per5-surface-warm: #F0E8DA;
+    /* cards em sections quentes */
+    --per5-border: #EDE6DC;
+    /* bordas de cards, linhas divisórias */
+    --per5-border-dark: #C8B89A;
+    /* bordas sobre dark (mais visível) */
+
+    /* ── Sombras ── */
+    --per5-shadow-sm: 0 2px 8px rgba(60, 52, 40, 0.08);
+    --per5-shadow-md: 0 6px 20px rgba(60, 52, 40, 0.12);
+    --per5-shadow-lg: 0 12px 40px rgba(60, 52, 40, 0.16);
+
+    /* ── Tipografia ── */
+    --per5-font-display: 'Montserrat', sans-serif;
+    /* títulos, H1–H3 */
+    --per5-font-body: 'Inter', sans-serif;
+    /* corpo, UI, labels */
+
+    /* ── Pesos tipográficos ── */
+    --per5-weight-regular: 400;
+    --per5-weight-medium: 500;
+    --per5-weight-semibold: 600;
+    --per5-weight-bold: 700;
+
+    /* ── Escala tipográfica ── */
+    --per5-text-xs: 11px;
+    --per5-text-sm: 13px;
+    --per5-text-base: 16px;
+    --per5-text-lg: 18px;
+    --per5-text-xl: 22px;
+    --per5-text-2xl: 28px;
+    --per5-text-3xl: 36px;
+    --per5-text-4xl: 48px;
+
+    /* ── Espaçamento ── */
+    --per5-radius-sm: 4px;
+    --per5-radius-md: 8px;
+    --per5-radius-lg: 12px;
+    --per5-radius-xl: 20px;
+    --per5-radius-pill: 999px;
+
+    /* ── Transições ── */
+    --per5-transition: 0.18s ease;
+}
+
+/* ─── Reset mínimo ────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-base);
+    font-weight: var(--per5-weight-regular);
+    color: var(--per5-neutral-700);
+    background-color: var(--per5-offwhite);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Headings ───────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: var(--per5-font-display);
+    font-weight: var(--per5-weight-bold);
+    color: var(--per5-neutral-900);
+    line-height: 1.2;
+    margin: 0;
+}
+
+h1 {
+    font-size: var(--per5-text-4xl);
+}
+
+h2 {
+    font-size: var(--per5-text-3xl);
+}
+
+h3 {
+    font-size: var(--per5-text-2xl);
+}
+
+h4 {
+    font-size: var(--per5-text-xl);
+    font-weight: var(--per5-weight-semibold);
+}
+
+p {
+    margin: 0;
+    color: var(--per5-neutral-700);
+}
+
+/* ─── Botões ─────────────────────────────────────────────── */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--per5-copper);
+    color: var(--per5-offwhite);
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-sm);
+    font-weight: var(--per5-weight-semibold);
+    padding: 13px 26px;
+    border-radius: var(--per5-radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: background var(--per5-transition), transform var(--per5-transition);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+}
+
+.btn-primary:hover {
+    background: var(--per5-copper-hover);
+}
+
+.btn-primary:active {
+    background: var(--per5-copper-dark);
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--per5-copper);
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-sm);
+    font-weight: var(--per5-weight-semibold);
+    padding: 12px 24px;
+    border-radius: var(--per5-radius-sm);
+    border: 1.5px solid var(--per5-copper);
+    cursor: pointer;
+    transition: all var(--per5-transition);
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background: var(--per5-copper-pale);
+}
+
+.btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--per5-dark);
+    color: var(--per5-offwhite);
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-sm);
+    font-weight: var(--per5-weight-semibold);
+    padding: 13px 26px;
+    border-radius: var(--per5-radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: background var(--per5-transition);
+    text-decoration: none;
+}
+
+.btn-dark:hover {
+    background: var(--per5-darker);
+}
+
+.btn-outline-light {
+    /* para uso em seções escuras (dark bg) */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--per5-offwhite);
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-sm);
+    font-weight: var(--per5-weight-semibold);
+    padding: 12px 24px;
+    border-radius: var(--per5-radius-sm);
+    border: 1.5px solid var(--per5-offwhite);
+    cursor: pointer;
+    transition: all var(--per5-transition);
+    text-decoration: none;
+}
+
+.btn-outline-light:hover {
+    background: rgba(245, 240, 235, 0.12);
+}
+
+/* ─── Badges / Tags ──────────────────────────────────────── */
+.badge {
+    display: inline-block;
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-xs);
+    font-weight: var(--per5-weight-semibold);
+    padding: 4px 10px;
+    border-radius: var(--per5-radius-pill);
+    letter-spacing: 0.03em;
+}
+
+.badge-primary {
+    background: var(--per5-copper-pale);
+    color: var(--per5-copper-dark);
+}
+
+.badge-success {
+    background: var(--per5-green-pale);
+    color: var(--per5-green);
+}
+
+.badge-warning {
+    background: var(--per5-amber-pale);
+    color: #8A6420;
+}
+
+.badge-neutral {
+    background: var(--per5-neutral-100);
+    color: var(--per5-neutral-700);
+}
+
+.badge-dark {
+    background: var(--per5-dark);
+    color: var(--per5-sand);
+}
+
+/* Variante uppercase (para labels de serviço) */
+.badge-label {
+    display: inline-block;
+    font-family: var(--per5-font-body);
+    font-size: 10px;
+    font-weight: var(--per5-weight-semibold);
+    padding: 3px 8px;
+    border-radius: var(--per5-radius-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ─── Cards ──────────────────────────────────────────────── */
+.card {
+    background: var(--per5-surface);
+    border: 1px solid var(--per5-border);
+    border-radius: var(--per5-radius-lg);
+    padding: 24px;
+    transition: transform var(--per5-transition), box-shadow var(--per5-transition);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--per5-shadow-md);
+}
+
+.card-featured {
+    /* card carro-chefe — borda cobre */
+    border: 2px solid var(--per5-copper);
+}
+
+/* ─── Sections ───────────────────────────────────────────── */
+.section-light {
+    background: var(--per5-offwhite);
+}
+
+.section-warm {
+    background: var(--per5-copper-pale);
+}
+
+.section-dark {
+    background: var(--per5-dark);
+    color: var(--per5-offwhite);
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4 {
+    color: var(--per5-offwhite);
+}
+
+.section-dark p {
+    color: var(--per5-sand);
+}
+
+/* ─── Seção label (eyebrow) ──────────────────────────────── */
+.eyebrow {
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-xs);
+    font-weight: var(--per5-weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--per5-copper);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.section-dark .eyebrow {
+    color: var(--per5-sand);
+}
+
+/* ─── Navbar ─────────────────────────────────────────────── */
+.navbar {
+    background: var(--per5-dark);
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    font-family: var(--per5-font-display);
+    font-weight: var(--per5-weight-bold);
+    font-size: var(--per5-text-xl);
+    color: var(--per5-offwhite);
+    text-decoration: none;
+}
+
+.navbar-link {
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-sm);
+    font-weight: var(--per5-weight-medium);
+    color: var(--per5-sand);
+    text-decoration: none;
+    transition: color var(--per5-transition);
+}
+
+.navbar-link:hover {
+    color: var(--per5-offwhite);
+}
+
+.navbar-link.active {
+    color: var(--per5-copper);
+}
+
+/* ─── Footer ─────────────────────────────────────────────── */
+.footer {
+    background: var(--per5-darker);
+    padding: 48px 40px 24px;
+    color: var(--per5-sand);
+}
+
+.footer-title {
+    font-family: var(--per5-font-display);
+    font-weight: var(--per5-weight-bold);
+    color: var(--per5-offwhite);
+    font-size: var(--per5-text-lg);
+    margin-bottom: 4px;
+}
+
+.footer-sub {
+    font-size: var(--per5-text-xs);
+    color: var(--per5-sand);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ─── Formulário ─────────────────────────────────────────── */
+.form-label {
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-sm);
+    font-weight: var(--per5-weight-medium);
+    color: var(--per5-neutral-900);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    font-family: var(--per5-font-body);
+    font-size: var(--per5-text-sm);
+    color: var(--per5-neutral-900);
+    background: var(--per5-surface);
+    border: 1.5px solid var(--per5-border);
+    border-radius: var(--per5-radius-md);
+    padding: 10px 14px;
+    transition: border-color var(--per5-transition);
+    outline: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: var(--per5-copper);
+    box-shadow: 0 0 0 3px rgba(200, 121, 65, 0.15);
+}
+
+.form-input::placeholder {
+    color: var(--per5-neutral-500);
+}
+
+/* ─── Divider ────────────────────────────────────────────── */
+.divider {
+    height: 1px;
+    background: var(--per5-border);
+    margin: 24px 0;
+    border: none;
+}
+
+.divider-dark {
+    background: rgba(245, 240, 235, 0.15);
+}

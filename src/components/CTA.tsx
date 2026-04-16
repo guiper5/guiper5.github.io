@@ -1,87 +1,207 @@
-import { Button } from '@/components/ui/button';
-import { MessageCircle, Phone, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+type FormState = 'idle' | 'sending' | 'success' | 'error';
 
 const CTA = () => {
+  const [formState, setFormState] = useState<FormState>('idle');
+  const [telefone, setTelefone] = useState('');
+  const { t } = useLanguage();
+  const tx = t.cta;
+
+  const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTelefone(e.target.value.replace(/\D/g, '').slice(0, 11));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (telefone.length < 10) {
+      e.currentTarget.querySelector<HTMLInputElement>('[name="telefone"]')
+        ?.setCustomValidity('Informe DDD + número (mínimo 10 dígitos)');
+      e.currentTarget.reportValidity();
+      return;
+    }
+    setFormState('sending');
+    const data = new FormData(e.currentTarget);
+    try {
+      const res = await fetch('https://formspree.io/f/xlgonzzz', {
+        method: 'POST', body: data,
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) { setFormState('success'); setTelefone(''); (e.target as HTMLFormElement).reset(); }
+      else setFormState('error');
+    } catch { setFormState('error'); }
+  };
+
+  const Label = ({ children }: { children: React.ReactNode }) => (
+    <label
+      className="block text-xs font-medium mb-1.5 uppercase tracking-wider"
+      style={{ fontFamily: 'Instrument Sans, sans-serif', color: 'var(--fumo)' }}
+    >
+      {children}
+    </label>
+  );
+
+  const Req = () => <span style={{ color: 'var(--amber)' }}>*</span>;
+
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-20 h-20 border-2 border-primary rounded-full"></div>
-        <div className="absolute top-32 right-20 w-16 h-16 border-2 border-primary rotate-45"></div>
-        <div className="absolute bottom-20 left-1/4 w-12 h-12 border-2 border-primary rounded-full"></div>
-        <div className="absolute bottom-32 right-1/3 w-24 h-24 border-2 border-primary rotate-12"></div>
-      </div>
+    <section id="orcamento" className="py-24" style={{ backgroundColor: 'var(--s-dark)' }}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-3xl mx-auto">
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center text-primary">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Tem um projeto em mente?
-            <span className="block text-accent">Fale com a PER5.</span>
-          </h2>
-          
-          <p className="text-xl md:text-2xl mb-8 text-muted-foreground leading-relaxed">
-            Estamos prontos para entregar <strong>soluções técnicas</strong> com 
-            precisão e agilidade para o seu projeto de infraestrutura.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="gradient-cta text-accent-foreground hover:opacity-90 shadow-cta px-8 py-6 text-lg font-semibold group"
-              asChild
+          {/* Header */}
+          <div className="text-center mb-12">
+            <span className="eyebrow-light">{tx.eyebrow}</span>
+            <h2
+              className="text-section mb-4"
+              style={{ color: 'var(--areia)', fontFamily: 'Barlow Condensed, sans-serif', textTransform: 'uppercase' }}
             >
-              <a 
-                href="http://wa.me/5519991508664"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Entrar em Contato
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="bg-white text-primary border-white hover:bg-white/90 px-8 py-6 text-lg"
-              asChild
+              {tx.title}
+            </h2>
+            <p
+              className="text-base"
+              style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
+              dangerouslySetInnerHTML={{
+                __html: tx.subtitle.replace(/<strong>/g, '<strong style="color:var(--amber)">'),
+              }}
+            />
+          </div>
+
+          {/* Success */}
+          {formState === 'success' ? (
+            <div className="rounded-sm p-12 text-center" style={{ background: 'var(--s-dark-card)', border: '1px solid rgba(244,237,230,0.1)' }}>
+              <CheckCircle className="h-14 w-14 mx-auto mb-4" style={{ color: '#4A6741' }} />
+              <h3 className="text-2xl mb-3" style={{ fontFamily: 'Barlow Condensed, sans-serif', color: 'var(--areia)', textTransform: 'uppercase' }}>
+                {tx.successTitle}
+              </h3>
+              <p className="text-sm max-w-md mx-auto" style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                {tx.successBody}
+              </p>
+            </div>
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-sm p-8 md:p-10 space-y-8"
+              style={{ background: 'var(--s-dark-card)', border: '1px solid rgba(244,237,230,0.08)' }}
             >
-              <a href="tel:+5519991508664">
-                <Phone className="mr-2 h-5 w-5" />
-                (19) 99150-8664
-              </a>
-            </Button>
-          </div>
+              {/* Identification */}
+              <div>
+                <div className="label mb-5" style={{ color: 'var(--amber-l)', borderBottom: '1px solid rgba(244,237,230,0.1)', paddingBottom: '8px' }}>
+                  {tx.sections.id}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label>{tx.labels.nome} <Req /></Label>
+                    <input type="text" name="nome" required placeholder={tx.placeholders.nome} className="input-per5" />
+                  </div>
+                  <div>
+                    <Label>{tx.labels.email} <Req /></Label>
+                    <input type="email" name="email" required placeholder={tx.placeholders.email} className="input-per5" />
+                  </div>
+                  <div>
+                    <Label>{tx.labels.telefone} <Req /></Label>
+                    <input
+                      type="tel" name="telefone" required inputMode="numeric"
+                      value={telefone} onChange={handlePhone}
+                      onFocus={e => e.target.setCustomValidity('')}
+                      placeholder={tx.placeholders.telefone}
+                      maxLength={11} pattern="[0-9]{10,11}"
+                      title="Somente dígitos — DDD + número"
+                      className="input-per5"
+                    />
+                    {telefone.length > 0 && telefone.length < 10 && (
+                      <p className="mt-1 text-xs" style={{ color: 'var(--amber-l)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                        {tx.phoneHint(11 - telefone.length)}
+                      </p>
+                    )}
+                    {telefone.length >= 10 && (
+                      <p className="mt-1 text-xs" style={{ color: '#4A6741' }}>{tx.phoneOk}</p>
+                    )}
+                  </div>
+                  <div>
+                    <Label>{tx.labels.empresa}</Label>
+                    <input type="text" name="empresa" placeholder={tx.placeholders.empresa} className="input-per5" />
+                  </div>
+                </div>
+              </div>
 
-          {/* Benefits */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="p-4">
-              <div className="text-accent text-2xl font-bold mb-2">✓</div>
-              <h3 className="font-semibold mb-1 text-primary">Orçamento Gratuito</h3>
-              <p className="text-muted-foreground text-sm">Análise inicial sem compromisso</p>
-            </div>
-            <div className="p-4">
-              <div className="text-accent text-2xl font-bold mb-2">⚡</div>
-              <h3 className="font-semibold mb-1 text-primary">Resposta Rápida</h3>
-              <p className="text-muted-foreground text-sm">Retorno em até 24 horas</p>
-            </div>
-            <div className="p-4">
-              <div className="text-accent text-2xl font-bold mb-2">🎯</div>
-              <h3 className="font-semibold mb-1 text-primary">Solução Personalizada</h3>
-              <p className="text-muted-foreground text-sm">Projeto sob medida para você</p>
-            </div>
-          </div>
+              {/* You are */}
+              <div>
+                <div className="label mb-5" style={{ color: 'var(--amber-l)', borderBottom: '1px solid rgba(244,237,230,0.1)', paddingBottom: '8px' }}>
+                  {tx.sections.voce} <Req />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {tx.tipoSolicitante.map((tipo) => (
+                    <label
+                      key={tipo}
+                      className="flex items-center gap-3 px-4 py-2.5 rounded-sm cursor-pointer text-sm transition-all duration-150"
+                      style={{ border: '1px solid rgba(244,237,230,0.12)', color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
+                    >
+                      <input type="radio" name="tipo_solicitante" value={tipo} required style={{ accentColor: 'var(--amber)' }} />
+                      {tipo}
+                    </label>
+                  ))}
+                </div>
+              </div>
 
-          {/* Trust Badge */}
-          <div className="mt-12 p-6 bg-primary/5 rounded-lg border border-primary/20">
-            <p className="text-primary text-sm mb-2">
-              <strong>Atendemos todo o Brasil</strong>
-            </p>
-            <p className="text-muted-foreground text-xs">
-              Projetos de Infraestrutura • Consultoria em Patologias • Regularização de Imóveis e Loteamentos • OpenBIM 
-            </p>
-          </div>
+              {/* About the project */}
+              <div>
+                <div className="label mb-5" style={{ color: 'var(--amber-l)', borderBottom: '1px solid rgba(244,237,230,0.1)', paddingBottom: '8px' }}>
+                  {tx.sections.projeto}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label>{tx.labels.tipoProjeto} <Req /></Label>
+                    <select name="tipo_projeto" required defaultValue={tx.tipoProjeto[0]} className="input-per5">
+                      {tx.tipoProjeto.map((opt) => <option key={opt}>{opt}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <Label>{tx.labels.localizacao} <Req /></Label>
+                    <input type="text" name="localizacao" required placeholder={tx.placeholders.localizacao} className="input-per5" />
+                  </div>
+                  <div>
+                    <Label>{tx.labels.area} <Req /></Label>
+                    <select name="area" required className="input-per5">
+                      <option value="">—</option>
+                      {tx.area.map((opt) => <option key={opt}>{opt}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <Label>{tx.labels.prazo} <Req /></Label>
+                    <select name="prazo" required className="input-per5">
+                      <option value="">—</option>
+                      {tx.prazo.map((opt) => <option key={opt}>{opt}</option>)}
+                    </select>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <Label>{tx.labels.desc}</Label>
+                  <textarea name="descricao" rows={4} placeholder={tx.placeholders.desc} className="input-per5 resize-none" />
+                </div>
+              </div>
+
+              <input type="hidden" name="_replyto" value="guilherme@per5.com.br" />
+              <input type="hidden" name="_subject" value="[PER5] Novo orçamento via site" />
+
+              <div>
+                <button type="submit" disabled={formState === 'sending'} className="btn-amber w-full justify-center text-base group disabled:opacity-60">
+                  {formState === 'sending' ? tx.sending : (
+                    <>{tx.submit} <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" /></>
+                  )}
+                </button>
+                {formState === 'error' && (
+                  <p className="mt-3 text-xs text-center" style={{ color: '#e74c3c', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {tx.errMsg}
+                  </p>
+                )}
+                <p className="mt-4 text-xs text-center" style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                  {tx.privacy}
+                </p>
+              </div>
+            </form>
+          )}
         </div>
       </div>
     </section>

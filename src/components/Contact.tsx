@@ -1,148 +1,138 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Instagram, MessageCircle, MapPin, Clock, Phone, Linkedin } from 'lucide-react';
+import { MessageCircle, Mail, Instagram, Linkedin, MapPin, Clock } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Contact = () => {
-  const contactMethods = [
-    {
-      icon: MessageCircle,
-      title: 'WhatsApp',
-      description: 'Fale conosco agora mesmo',
-      value: '(19) 99150-8664',
-      link: 'http://wa.me/5519991508664',
-      primary: true
-    },
-    {
-      icon: Mail,
-      title: 'E-mail',
-      description: 'Envie sua dúvida ou solicitação',
-      value: 'contato@per5.com.br',
-      link: 'mailto:contato@per5.com.br'
-    },
-    {
-      icon: Instagram,
-      title: 'Instagram',
-      description: 'Acompanhe nossos projetos',
-      value: '@per5eng',
-      link: 'https://www.instagram.com/per5eng/'
-    },
-    {
-      icon: Linkedin,
-      title: 'Linkedin',
-      description: 'Acesse nosso perfil corporativo',
-      value: '@per5',
-      link: 'https://www.linkedin.com/company/per5/ '
-    }
-  ];
+  const { t } = useLanguage();
+  const tx = t.contact;
 
   return (
-    <section id="contato" className="py-20 bg-white">
+    <section id="contato" className="py-20" style={{ backgroundColor: 'var(--s-2)' }}>
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-              Entre em Contato
+        <div className="max-w-4xl mx-auto">
+
+          <div className="text-center mb-12">
+            <span className="eyebrow">{tx.eyebrow}</span>
+            <h2 className="text-section mb-4" style={{ color: 'var(--t-h)', fontFamily: 'Barlow Condensed, sans-serif', textTransform: 'uppercase' }}>
+              {tx.title}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Pronto para dar vida ao seu projeto? Nossa equipe está disponível 
-              para esclarecer dúvidas e apresentar a melhor solução para suas necessidades.
+            <p className="text-sm" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+              {tx.subtitle}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {contactMethods.map((method, index) => (
-              <Card 
-                key={index} 
-                className={`gradient-card shadow-card hover:shadow-hover transition-all duration-300 border-0 group cursor-pointer ${
-                  method.primary ? 'ring-2 ring-accent/20' : ''
-                }`}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* Main channels */}
+            <div className="space-y-3">
+              <a
+                href="https://wa.me/5519991508664"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-5 rounded-sm transition-all duration-200 group"
+                style={{ background: 'var(--s-card)', border: '1px solid rgba(192,132,89,0.25)' }}
               >
-                <CardContent className="p-6 text-center">
-                  <a 
-                    href={method.link}
-                    target={method.link.startsWith('http') ? '_blank' : '_self'}
-                    rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
-                    className="block"
-                  >
-                    <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 ${
-                      method.primary ? 'gradient-cta' : 'bg-primary'
-                    } group-hover:scale-110`}>
-                      <method.icon className="h-8 w-8 text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-primary mb-2 group-hover:text-primary-light transition-colors">
-                      {method.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-2">
-                      {method.description}
-                    </p>
-                    <p className="text-primary font-medium">
-                      {method.value}
-                    </p>
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                <div className="w-11 h-11 rounded-sm flex items-center justify-center flex-shrink-0" style={{ background: 'var(--amber)' }}>
+                  <MessageCircle className="h-5 w-5" style={{ color: 'var(--areia)' }} />
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-widest mb-0.5" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {tx.channels.wa.label}
+                  </div>
+                  <div className="text-sm font-medium" style={{ color: 'var(--t-h)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {tx.channels.wa.value}
+                  </div>
+                </div>
+              </a>
 
-          {/* Additional Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Business Hours */}
-            <Card className="gradient-card shadow-card border-0">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <Clock className="h-6 w-6 text-primary mr-3" />
-                  <h3 className="text-xl font-semibold text-primary">
-                    Horário de Atendimento
-                  </h3>
-                </div>
-                <div className="space-y-2 text-muted-foreground">
-                  <p><strong>Segunda a Sexta:</strong> 8:00 às 18:00</p>
-                  <p><strong>Sábado:</strong> 8:00 às 12:00</p>
-                  <p><strong>WhatsApp:</strong> Disponível 24/7</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Location */}
-            <Card className="gradient-card shadow-card border-0">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <MapPin className="h-6 w-6 text-primary mr-3" />
-                  <h3 className="text-xl font-semibold text-primary">
-                    Área de Atuação
-                  </h3>
-                </div>
-                <div className="space-y-2 text-muted-foreground">
-                  <p><strong>Todo o Brasil</strong></p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Final CTA */}
-          <div className="mt-12 text-center">
-            <div className="bg-white rounded-2xl p-8 border-2 border-primary/10 shadow-card">
-              <h3 className="text-2xl font-bold text-primary mb-4">
-                Transforme sua ideia em realidade
-              </h3>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Com mais de 7 anos de experiência em engenharia civil, 
-                a PER5 é sua parceira ideal para projetos de infraestrutura de qualidade.
-              </p>
-              <Button 
-                size="lg" 
-                className="gradient-cta text-accent-foreground hover:opacity-90 shadow-cta px-8 py-3"
-                asChild
+              <a
+                href="mailto:guilherme@per5.com.br"
+                className="flex items-center gap-4 p-5 rounded-sm transition-all duration-200"
+                style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}
               >
-                <a 
-                  href="http://wa.me/5519991508664"
+                <div className="w-11 h-11 rounded-sm flex items-center justify-center flex-shrink-0" style={{ background: 'var(--amber-pale)' }}>
+                  <Mail className="h-5 w-5" style={{ color: 'var(--amber-d)' }} />
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-widest mb-0.5" style={{ color: 'var(--t-m)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {tx.channels.email.label}
+                  </div>
+                  <div className="text-sm font-medium" style={{ color: 'var(--t-h)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {tx.channels.email.value}
+                  </div>
+                </div>
+              </a>
+
+              <div className="flex gap-3">
+                <a
+                  href="https://www.instagram.com/per5eng/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex-1 flex items-center gap-3 p-4 rounded-sm transition-all duration-200"
+                  style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}
                 >
-                  <MessageCircle className="mr-2 h-5 w-5" />
-                  Começar Meu Projeto Agora
+                  <Instagram className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--amber)' }} />
+                  <span className="text-sm" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {tx.channels.ig}
+                  </span>
                 </a>
-              </Button>
+                <a
+                  href="https://www.linkedin.com/company/per5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center gap-3 p-4 rounded-sm transition-all duration-200"
+                  style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}
+                >
+                  <Linkedin className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--amber)' }} />
+                  <span className="text-sm" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {tx.channels.li}
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            {/* Info */}
+            <div className="space-y-3">
+              <div className="p-5 rounded-sm" style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}>
+                <div className="flex items-center gap-2 mb-4">
+                  <MapPin className="h-4 w-4" style={{ color: 'var(--amber)' }} />
+                  <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {tx.atuacao.title}
+                  </span>
+                </div>
+                <div className="space-y-2">
+                  {tx.atuacao.rows.map(({ label, val }) => (
+                    <div key={label} className="flex justify-between text-sm">
+                      <span style={{ color: 'var(--t-m)', fontFamily: 'Instrument Sans, sans-serif' }}>{label}</span>
+                      <span style={{ color: 'var(--t-h)', fontFamily: 'Instrument Sans, sans-serif' }}>{val}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-5 rounded-sm" style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}>
+                <div className="flex items-center gap-2 mb-4">
+                  <Clock className="h-4 w-4" style={{ color: 'var(--amber)' }} />
+                  <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {tx.horario.title}
+                  </span>
+                </div>
+                <div className="space-y-2">
+                  {tx.horario.rows.map(({ label, val }) => (
+                    <div key={label} className="flex justify-between text-sm">
+                      <span style={{ color: 'var(--t-m)', fontFamily: 'Instrument Sans, sans-serif' }}>{label}</span>
+                      <span style={{ color: 'var(--t-h)', fontFamily: 'Instrument Sans, sans-serif' }}>{val}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-4 rounded-sm" style={{ background: 'var(--amber-pale)', border: '1px solid rgba(192,132,89,0.2)' }}>
+                <p
+                  className="text-xs"
+                  style={{ color: 'var(--amber-d)', fontFamily: 'Instrument Sans, sans-serif' }}
+                  dangerouslySetInnerHTML={{ __html: tx.crea }}
+                />
+              </div>
             </div>
           </div>
         </div>

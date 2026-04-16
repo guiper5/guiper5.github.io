@@ -1,74 +1,111 @@
-import { CheckCircle, Target, Users, Award } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+const diferenciais = [
+  'Especialização em infraestrutura — não somos generalistas',
+  'Projetos em Civil 3D e AutoCAD com padrão executivo',
+  'Emissão de ART e responsabilidade técnica pelo CREA',
+  'Integração com projetos de pavimentação, fundações e arquitetura',
+  'Atendimento direto com o engenheiro responsável — sem intermediários',
+  'Prazos cumpridos — cronograma real, não estimativa comercial',
+  'Confidencialidade garantida para parceiros B2B',
+  'Campinas e interior de SP · Remoto para todo o Brasil',
+];
+
+const stats = [
+  { num: '100+', label: 'Projetos entregues' },
+  { num: '7+',   label: 'Anos de experiência' },
+  { num: '24h',  label: 'Retorno ao contato' },
+];
 
 const About = () => {
-  const features = [
-    {
-      icon: Target,
-      title: 'Precisão Técnica',
-      description: 'Projetos desenvolvidos com rigor técnico e atenção aos detalhes'
-    },
-    {
-      icon: Users,
-      title: 'Soluções Personalizadas',
-      description: 'Atendimento sob medida para cada necessidade específica'
-    },
-    {
-      icon: CheckCircle,
-      title: 'Prazo e Orçamento',
-      description: 'Compromisso com entregas pontuais e controle de custos'
-    },
-    {
-      icon: Award,
-      title: 'Excelência em Engenharia',
-      description: 'Padrões elevados de qualidade e inovação constante'
-    }
-  ];
-
   return (
-    <section id="quem-somos" className="py-20 bg-white">
+    <section id="sobre" className="py-24 bg-theme-alt">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-            Quem Somos
+
+        {/* Título centralizado */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="eyebrow mb-3">Por que a PER5?</span>
+          <h2
+            className="text-3xl md:text-4xl font-bold text-heading mb-5"
+            style={{ fontFamily: 'Montserrat, sans-serif' }}
+          >
+            Projetos de infraestrutura que cabem no seu projeto —
+            sem precisar de uma grande empresa
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Na PER5, transformamos <strong>desafios de engenharia</strong> em <strong>soluções integradas</strong> de <strong>infraestrutura</strong> e <strong>regularização</strong>. Do <strong>diagnóstico preciso de patologias</strong> à <strong>aprovação de loteamentos e condomínios</strong>, nossa atuação é pautada pelas <strong>normas vigentes</strong> e pelas <strong>melhores práticas do mercado</strong>. Unimos a experiência em <strong>engenharia diagnóstica</strong> à inovação do <strong>openBIM</strong> para oferecer uma <strong>gestão de projetos transparente e interoperável</strong>. Somos <strong>parceiros estratégicos</strong> que asseguram a <strong>viabilidade de cada obra</strong>, respeitando <strong>prazos</strong>, <strong>orçamentos</strong> e as <strong>exigências técnicas mais rigorosas</strong>.
+          <p className="text-body-c text-lg leading-relaxed">
+            Projetos de terraplenagem e drenagem sempre foram território de grandes escritórios.
+            Equipe pesada, prazos longos, burocracia e ticket fora do alcance da maioria das
+            construtoras e loteadoras regionais. <strong className="text-heading">A PER5 nasceu para mudar isso.</strong>
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
-            <Card key={index} className="gradient-card shadow-card hover:shadow-hover transition-shadow duration-300 border-0">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 gradient-cta rounded-full flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="h-8 w-8 text-accent-foreground" />
-                </div>
-                <h3 className="text-lg font-semibold text-primary mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {feature.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {/* 2 colunas */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="p-6">
-              <div className="text-4xl font-bold text-primary mb-2">100+</div>
-              <p className="text-muted-foreground">Projetos Executados</p>
-            </div>
-            <div className="p-6">
-              <div className="text-4xl font-bold text-primary mb-2">7+</div>
-              <p className="text-muted-foreground">Anos de Experiência</p>
-            </div>
-            <div className="p-6">
-              <div className="text-4xl font-bold text-primary mb-2">100%</div>
-              <p className="text-muted-foreground">Satisfação dos Clientes</p>
+          {/* Texto + stats */}
+          <div>
+            <p className="text-body-c leading-relaxed mb-5">
+              Somos um escritório independente especializado em projetos de infraestrutura civil.
+              Entregamos a mesma qualidade técnica que as grandes consultorias entregam — com Civil 3D,
+              compatibilização de disciplinas, normas ABNT, ART — mas com a agilidade de quem atende
+              você diretamente, responde no mesmo dia e não some depois de assinar o contrato.
+            </p>
+            <p className="text-body-c leading-relaxed mb-5">
+              Para escritórios de arquitetura e engenharia, somos o backoffice de infraestrutura que
+              faltava: você mantém o cliente, a gente entrega o projeto técnico.
+            </p>
+            <p className="text-body-c leading-relaxed">
+              Para construtoras e empreendedores, somos o parceiro que torna viável o que antes
+              só estava ao alcance de grandes players.
+            </p>
+
+            {/* Stats */}
+            <div className="mt-10 grid grid-cols-3 gap-3">
+              {stats.map(({ num, label }) => (
+                <div
+                  key={label}
+                  className="text-center p-4 rounded-lg"
+                  style={{ border: '1px solid var(--border)', background: 'var(--bg)' }}
+                >
+                  <div
+                    className="text-3xl font-bold mb-1"
+                    style={{
+                      fontFamily: 'Montserrat, sans-serif',
+                      color: 'var(--per5-copper)',
+                    }}
+                  >
+                    {num}
+                  </div>
+                  <p className="text-xs text-muted-c leading-tight">{label}</p>
+                </div>
+              ))}
             </div>
           </div>
+
+          {/* Diferenciais */}
+          <div
+            className="rounded-lg p-8"
+            style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}
+          >
+            <h3
+              className="text-base font-bold text-heading mb-6"
+              style={{ fontFamily: 'Montserrat, sans-serif' }}
+            >
+              Nossos Diferenciais
+            </h3>
+            <ul className="space-y-4">
+              {diferenciais.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-sm text-body-c leading-relaxed">
+                  <span
+                    className="mt-0.5 flex-shrink-0 font-bold"
+                    style={{ color: 'var(--per5-green)' }}
+                  >
+                    ✓
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );

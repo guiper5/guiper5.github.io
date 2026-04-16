@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/**)",
+      "Bash(npx kill-port:*)",
+      "Bash(nohup npm:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080)"
+    ]
+  }
+}
