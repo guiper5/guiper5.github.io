@@ -710,6 +710,12 @@ Usa `visibility` (não `display:none`) para permitir transição de opacidade.
 - Conteúdo em inglês revisado novamente para remover tradução literal, padronizar ART e melhorar terminologia comercial.
 - Validação QA final executada em desktop e mobile simulados: sem overflow horizontal, inputs com 16px, principais CTAs com 44px e modo de movimento reduzido ativo corretamente.
 
+### Hotfix Deploy 19/05
+
+- Corrigida a causa da tela branca no GitHub Pages: havia dois workflows de deploy rodando no push para `main`.
+- O workflow Vite publicava corretamente o conteúdo compilado de `dist`, mas o workflow Jekyll terminava depois e sobrescrevia a publicação com a raiz do repositório, servindo o `index.html` fonte com `/src/main.tsx`.
+- Workflow `.github/workflows/jekyll-gh-pages.yml` removido. O deploy oficial passa a ser apenas `.github/workflows/deploy.yml`, com `npm ci`, `npm run build`, upload de `dist` e fallback SPA `404.html`.
+
 *Documento vivo — atualizar conforme decisões forem tomadas ao longo do projeto.*
 
 ---
