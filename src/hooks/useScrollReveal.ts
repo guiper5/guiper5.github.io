@@ -30,30 +30,52 @@ export function useScrollReveal() {
   return ref;
 }
 
-export function useCounters() {
+export function useCounters(refreshKey?: string) {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>('[data-counter]');
+    const frameIds = new Set<number>();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    els.forEach((el) => {
+      el.textContent = `0${el.dataset.suffix || ''}`;
+    });
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           const el = entry.target as HTMLElement;
           const target = parseInt(el.dataset.counter || '0', 10);
+          const suffix = el.dataset.suffix || '';
+
+          if (reducedMotion) {
+            el.textContent = `${target}${suffix}`;
+            observer.unobserve(el);
+            return;
+          }
+
           const duration = 1600;
           const start = performance.now();
           const tick = (now: number) => {
             const progress = Math.min((now - start) / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.round(eased * target) + (el.dataset.suffix || '');
-            if (progress < 1) requestAnimationFrame(tick);
+            el.textContent = `${Math.round(eased * target)}${suffix}`;
+            if (progress < 1) {
+              const frameId = requestAnimationFrame(tick);
+              frameIds.add(frameId);
+            }
           };
-          requestAnimationFrame(tick);
+          const frameId = requestAnimationFrame(tick);
+          frameIds.add(frameId);
           observer.unobserve(el);
         });
       },
       { threshold: 0.5 }
     );
     els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      frameIds.forEach((frameId) => cancelAnimationFrame(frameId));
+    };
+  }, [refreshKey]);
 }

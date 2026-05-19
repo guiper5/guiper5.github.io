@@ -716,6 +716,13 @@ Usa `visibility` (não `display:none`) para permitir transição de opacidade.
 - O workflow Vite publicava corretamente o conteúdo compilado de `dist`, mas o workflow Jekyll terminava depois e sobrescrevia a publicação com a raiz do repositório, servindo o `index.html` fonte com `/src/main.tsx`.
 - Workflow `.github/workflows/jekyll-gh-pages.yml` removido. O deploy oficial passa a ser apenas `.github/workflows/deploy.yml`, com `npm ci`, `npm run build`, upload de `dist` e fallback SPA `404.html`.
 
+### Hotfix Idioma 19/05
+
+- Corrigida a animação dos counters da faixa de estatísticas ao alternar o site para inglês.
+- Causa: `useCounters()` rodava apenas no primeiro mount; ao trocar idioma, os textos eram recriados com `0`, mas o observer não reiniciava.
+- Solução: `useCounters()` passou a receber uma chave de atualização baseada nos labels/valores de `StatsBar`, reiniciando os counters quando o idioma muda.
+- Também foi adicionado suporte a `prefers-reduced-motion` para os counters exibirem o valor final sem animação quando o usuário pede movimento reduzido.
+
 *Documento vivo — atualizar conforme decisões forem tomadas ao longo do projeto.*
 
 ---

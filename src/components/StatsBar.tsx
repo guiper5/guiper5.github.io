@@ -3,7 +3,11 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const StatsBar = () => {
   const { t } = useLanguage();
-  useCounters();
+  const countersKey = t.stats.items
+    .map((s) => `${s.value}${s.suffix}:${s.label}`)
+    .join('|');
+
+  useCounters(countersKey);
 
   return (
     <div style={{ backgroundColor: 'var(--amber)' }}>
