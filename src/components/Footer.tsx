@@ -1,99 +1,183 @@
-import { MessageCircle, Instagram, Mail } from 'lucide-react';
+import { MessageCircle, Instagram, Linkedin, Mail } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+  const tx = t.footer;
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+
+  const socials = [
+    { icon: MessageCircle, href: 'https://wa.me/5519991508664',            label: 'WhatsApp' },
+    { icon: Instagram,     href: 'https://www.instagram.com/per5eng/',     label: 'Instagram' },
+    { icon: Linkedin,      href: 'https://www.linkedin.com/company/per5/', label: 'LinkedIn' },
+    { icon: Mail,          href: 'mailto:guilherme@per5.com.br',           label: 'Email' },
+  ];
+
+  const serviceIds = ['servicos','servicos','servicos','servicos','servicos','servicos'];
+  const segmentIds = ['audiencia','audiencia','audiencia','audiencia'];
+
   return (
-    <footer className="bg-[#4F4744] text-white py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Company Info */}
+    <footer style={{ background: 'var(--s-footer)' }}>
+      <div className="container mx-auto px-4 pt-16 pb-8">
+
+        <div className="grid grid-cols-1 gap-10 mb-14 md:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_1.35fr_1.3fr]">
+
+          {/* Brand */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 gradient-cta rounded-lg flex items-center justify-center">
-                <span className="text-accent-foreground font-bold text-lg">P5</span>
-              </div>
-              <h3 className="text-xl font-bold">PER5 PROJETOS E CONSULTORIA</h3>
+            <div
+              className="text-2xl font-bold mb-2"
+              style={{ fontFamily: 'Barlow Condensed, sans-serif', color: 'var(--areia)', letterSpacing: '0.05em' }}
+            >
+              PER5
             </div>
-            <p className="text-primary-foreground/80 mb-4 leading-relaxed">
-              Especialistas em engenharia de infraestrutura, projetos técnicos e 
-              consultorias com foco em excelência e inovação.
+            <div
+              className="text-xs mb-5"
+              style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif', letterSpacing: '0.1em', textTransform: 'uppercase' }}
+            >
+              {tx.tagline}
+            </div>
+            <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}>
+              {tx.about}
             </p>
-            <div className="flex space-x-4">
-              <a 
-                href="https://api.whatsapp.com/send/?phone=5519991508664"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-primary-foreground/10 rounded-full hover:bg-accent transition-colors"
-              >
-                <MessageCircle className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://www.instagram.com/per5eng/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-primary-foreground/10 rounded-full hover:bg-accent transition-colors"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a 
-                href="mailto:contato@per5.com.br"
-                className="p-2 bg-primary-foreground/10 rounded-full hover:bg-accent transition-colors"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
+            <div className="flex gap-2">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : '_self'}
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-11 h-11 rounded-sm flex items-center justify-center transition-all duration-200"
+                  style={{ background: 'rgba(244,237,230,0.06)', color: 'var(--fumo)' }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = 'var(--amber)';
+                    (e.currentTarget as HTMLAnchorElement).style.color = 'var(--areia)';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(244,237,230,0.06)';
+                    (e.currentTarget as HTMLAnchorElement).style.color = 'var(--fumo)';
+                  }}
+                >
+                  <Icon aria-hidden="true" className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Nossos Serviços</h4>
-            <ul className="space-y-2 text-primary-foreground/80">
-              <li>Projetos de Infraestrutura</li>
-              <li>Consultoria em Patologias</li>
-              <li>Regularização de Imóveis</li>
-              <li>OpenBIM</li>
+            <p className="text-xs font-medium uppercase tracking-widest mb-5" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
+              {tx.services}
+            </p>
+            <ul className="space-y-2.5">
+              {tx.serviceLinks.map((label, i) => (
+                <li key={label}>
+                  <button
+                    onClick={() => scrollTo(serviceIds[i])}
+                    className="block min-h-11 py-2 text-left text-sm transition-colors duration-200"
+                    style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--areia)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--fumo)')}
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
             </ul>
+          </div>
+
+          {/* For whom */}
+          <div>
+            <p className="text-xs font-medium uppercase tracking-widest mb-5" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
+              {tx.forWhom}
+            </p>
+            <ul className="space-y-2.5">
+              {tx.segmentLinks.map((label, i) => (
+                <li key={label}>
+                  <button
+                    onClick={() => scrollTo(segmentIds[i])}
+                    className="block min-h-11 py-2 text-left text-sm transition-colors duration-200"
+                    style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--areia)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--fumo)')}
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Credentials */}
+          <div>
+            <p className="text-xs font-medium uppercase tracking-widest mb-5" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
+              {tx.credentials}
+            </p>
+            <div
+              className="flex min-w-0 items-center gap-3 rounded-sm p-3"
+              style={{ background: 'rgba(244,237,230,0.06)', border: '1px solid rgba(192,132,89,0.2)' }}
+            >
+              <picture className="h-14 w-14 shrink-0">
+                <source srcSet="/buildingsmart.webp" type="image/webp" />
+                <img
+                  src="/buildingsmart.png"
+                  alt="buildingSMART"
+                  loading="lazy"
+                  className="h-14 w-14 object-contain"
+                />
+              </picture>
+              <a
+                href="https://www.buildingsmart.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 min-w-0 items-center text-xs font-medium leading-snug transition-colors duration-200"
+                style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif', overflowWrap: 'anywhere' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--amber-l)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--fumo)')}
+              >
+                Buildingsmart
+              </a>
+            </div>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contato</h4>
-            <div className="space-y-3 text-primary-foreground/80">
-              <div>
-                <p className="font-medium">WhatsApp:</p>
-                <a 
-                  href="https://api.whatsapp.com/send/?phone=5519991508664"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-accent transition-colors"
-                >
-                  (19) 99150-8664
-                </a>
-              </div>
-              <div>
-                <p className="font-medium">E-mail:</p>
-                <a 
-                  href="mailto:contato@per5.com.br"
-                  className="hover:text-accent transition-colors"
-                >
-                  contato@per5.com.br
-                </a>
-              </div>
-              <div>
-                <p className="font-medium">Atendimento:</p>
-                <p>Seg-Sex: 8h às 18h</p>
-                <p>Sáb: 8h às 12h</p>
-              </div>
+            <p className="text-xs font-medium uppercase tracking-widest mb-5" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
+              {tx.contact}
+            </p>
+            <div className="space-y-4 text-sm">
+              {[
+                { label: 'WhatsApp', val: '(19) 99150-8664', href: 'https://wa.me/5519991508664' },
+                { label: 'E-mail',   val: 'guilherme@per5.com.br', href: 'mailto:guilherme@per5.com.br' },
+              ].map(({ label, val, href }) => (
+                <div key={label}>
+                  <p className="text-xs uppercase tracking-wider mb-0.5" style={{ color: 'rgba(234,224,216,0.68)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {label}
+                  </p>
+                  <a
+                    href={href}
+                    target={href.startsWith('http') ? '_blank' : '_self'}
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center transition-colors duration-200"
+                    style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--areia)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--fumo)')}
+                  >
+                    {val}
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60">
-            <p>© 2026 PER5 Projetos e Consultoria. Todos os direitos reservados.</p>
-            <div className="flex space-x-4 mt-4 md:mt-0">
-              <span>Transformamos desafios em soluções sustentáveis e inteligentes.</span>
-            </div>
-          </div>
+        {/* Bottom bar */}
+        <div
+          className="pt-8 flex flex-col md:flex-row justify-between items-center gap-3 text-xs"
+          style={{ borderTop: '1px solid rgba(244,237,230,0.08)', color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
+        >
+          <p>{tx.copyright}</p>
+          <p>{tx.location}</p>
         </div>
       </div>
     </footer>

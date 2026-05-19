@@ -1,125 +1,222 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { 
-  Building2, 
-  Compass, 
-  ClipboardCheck, 
-  Settings,
-  ArrowRight, 
-  ShieldAlert
+import {
+  ArrowRight,
+  Building2,
+  ClipboardCheck,
+  Droplets,
+  FileSearch,
+  Layers,
+  Map,
+  Route,
+  ShieldAlert,
+  Truck,
 } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+const whatsappHref = 'https://wa.me/5519991508664';
+
+const priorityIcons = [Layers, Droplets, Building2, Route];
+const complementaryIcons = [Map, FileSearch, ClipboardCheck, ShieldAlert];
+const extraIcons = [Layers, Truck];
 
 const Services = () => {
-  const services = [
-    {
-      icon: Building2,
-      title: 'Projetos de Infraestrutura',
-      description: 'Projetos de Infraestrutura com Foco em Executabilidade.',
-      features: ['Terraplenagem: Volumetria com otimização de movimentação de terra', 'Drenagem: Redes e dispositivos de captação, Drenagem sustentável LID', 'Saneamento: Sistemas de abastecimento de água potável e coleta de esgoto', 'Pavimentação: Asfalto, Concreto, Intertravado, Permeável, Geométricos, Acessos Rodoviários e as-built']
-    },
-    {
-      icon: ShieldAlert,
-      title: 'Consultoria em Patologias',
-      description: 'Engenharia Diagnóstica: Ciência a Serviço da Longevidade.',
-      features: ['Visitas técnicas', 'Diagnóstico', 'Relatórios especializados', 'Soluções para prevenção e correção']
-    },
-    {
-      icon: ClipboardCheck,
-      title: 'Regularização de Imóveis e Loteamentos',
-      description: 'Regularização técnica e documental para garantir conformidade e viabilidade do imóvel e do Loteamento.',
-      features: [ 'Habite-se, Alvarás, Registro de Imóveis e Receita Federal', 'Desmembramentos, unificações e adequações legais', 'Estudos técnicos e de viabilidade', 'Projetos Urbanísticos']
-    },
-    {
-      icon: Settings,
-      title: 'OpenBIM',
-      description: 'Projetos desenvolvidos em padrão IFC para total interoperabilidade',
-      features: ['Consultoria, implantação e treinamentos de metodologia OpenBIM', 'Coordenação e auditoria de projetos e modelos (IFC, IDS, BCF)', 'Modelagem, Scan-to-BIM em IFC nativo', '⁠Gestão de informações em projetos de construção (ISO 19650)']
-    }
-  ];
+  const ref = useScrollReveal() as React.RefObject<HTMLElement>;
+  const { t } = useLanguage();
+  const tx = t.services;
 
   return (
-    <section id="servicos" className="py-20 bg-background">
+    <section
+      id="servicos"
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className="py-24 overflow-hidden"
+      style={{ backgroundColor: 'var(--s-page)' }}
+    >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-            Nossos Serviços
+        <div className="max-w-3xl mb-14 anim-fade-up">
+          <span className="eyebrow">{tx.eyebrow}</span>
+          <h2 className="text-section mb-4" style={{ color: 'var(--t-h)' }}>
+            {tx.title}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Oferecemos soluções completas em engenharia civil e infraestrutura, 
-            desde a concepção até a execução dos seus projetos.
+          <p className="text-base leading-relaxed" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+            {tx.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map((service, index) => (
-            <Card key={index} className="gradient-card shadow-card hover:shadow-hover transition-all duration-300 border-0 group">
-              <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 gradient-cta rounded-full flex items-center justify-center mx-auto mb-4">
-                  <service.icon className="h-8 w-8 text-accent-foreground" />
-                </div>
-                <CardTitle className="text-xl text-primary group-hover:text-primary-light transition-colors">
-                  {service.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-                
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                      <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <Button 
-                  variant="outline" 
-                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
-                  asChild
-                >
-                  <a 
-                    href="http://wa.me/5519991508664"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Solicitar Orçamento
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="mb-6 flex items-center gap-3 anim-fade-up delay-1">
+          <span className="h-px w-8" style={{ background: 'var(--amber)' }} />
+          <span className="label" style={{ color: 'var(--amber)' }}>
+            {tx.priorityLabel}
+          </span>
         </div>
 
-        {/* Process Section */}
-        <div className="mt-20">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-primary mb-4">
-              Como Trabalhamos
-            </h3>
-            <p className="text-muted-foreground">
-              Processo estruturado para garantir o sucesso do seu projeto
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+          {tx.priority.map((service, i) => {
+            const Icon = priorityIcons[i];
+
+            return (
+              <article key={service.title} className={`card-per5 service-card flex h-full flex-col anim-fade-up delay-${i + 2}`}>
+                <div className="mb-5 flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-sm" style={{ background: 'var(--amber-pale)' }}>
+                      <Icon aria-hidden="true" className="h-5 w-5" style={{ color: 'var(--amber-d)' }} />
+                    </div>
+                    <div>
+                      <span
+                        className="label inline-block"
+                        style={{ color: 'var(--amber-d)', background: 'var(--amber-pale)', padding: '3px 9px', borderRadius: '2px' }}
+                      >
+                        {service.badge}
+                      </span>
+                    </div>
+                  </div>
+                  <span
+                    className="font-display text-4xl font-bold leading-none"
+                    style={{ color: 'rgba(192,132,89,0.22)', fontFamily: 'Barlow Condensed, sans-serif' }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+
+                <h3 className="mb-3 text-2xl" style={{ color: 'var(--t-h)', fontFamily: 'Barlow Condensed, sans-serif' }}>
+                  {service.title}
+                </h3>
+                <p className="mb-6 text-sm leading-relaxed" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                  {service.desc}
+                </p>
+
+                <div className="mb-5">
+                  <div className="label mb-3" style={{ color: 'var(--t-m)' }}>
+                    {tx.deliverablesLabel}
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {service.deliverables.map((item) => (
+                      <div key={item} className="flex items-start gap-2 text-sm" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                        <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ background: 'var(--amber)' }} />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-auto">
+                  <div className="label mb-3" style={{ color: 'var(--t-m)' }}>
+                    {tx.applicationsLabel}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {service.applications.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-sm px-3 py-1 text-xs"
+                        style={{ color: 'var(--amber-d)', background: 'rgba(192,132,89,0.12)', fontFamily: 'Instrument Sans, sans-serif' }}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => go('orcamento')}
+                    className="mt-5 inline-flex min-h-11 items-center gap-1 rounded-sm px-3 py-2 text-sm font-medium group transition-colors focus-ring"
+                    style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif', minHeight: '44px' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--amber-d)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--amber)')}
+                  >
+                    {tx.ctaCard}
+                    <ArrowRight aria-hidden="true" className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div
+          className="mb-20 grid grid-cols-1 md:grid-cols-[260px_1fr] gap-5 rounded-sm p-5 anim-fade-up delay-6"
+          style={{ background: 'var(--s-2)', border: '1px solid var(--bd)' }}
+        >
+          <div>
+            <span className="eyebrow mb-0">{tx.infraExtrasTitle}</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {tx.infraExtras.map((extra, i) => {
+              const Icon = extraIcons[i];
+
+              return (
+                <div key={extra.title} className="flex gap-3">
+                  <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm" style={{ background: 'var(--amber)' }}>
+                    <Icon aria-hidden="true" className="h-4 w-4" style={{ color: 'var(--areia)' }} />
+                  </div>
+                  <div>
+                    <h3 className="mb-1 text-lg" style={{ color: 'var(--t-h)', fontFamily: 'Barlow Condensed, sans-serif' }}>
+                      {extra.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                      {extra.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div id="servicos-complementares" className="relative rounded-sm px-0 py-0">
+          <div
+            className="absolute -right-28 -top-20 hidden h-72 w-72 rounded-full lg:block"
+            style={{ background: 'radial-gradient(circle, rgba(192,132,89,0.12) 0%, transparent 68%)' }}
+          />
+
+          <div className="relative mb-10 max-w-3xl anim-fade-up">
+            <span className="eyebrow">{tx.complementaryLabel}</span>
+            <h2 className="text-section mb-4" style={{ color: 'var(--t-h)' }}>
+              {tx.complementaryTitle}
+            </h2>
+            <p className="text-base leading-relaxed" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+              {tx.complementarySubtitle}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              { step: '01', title: 'Inteligência de Dados', desc: 'Transformamos necessidades em diretrizes técnicas e legais claras.' },
-              { step: '02', title: 'Engenharia Integrada', desc: 'Projetamos soluções em BIM para antecipar problemas e otimizar custos de infraestrutura.' },
-              { step: '03', title: 'Rigor Executivo', desc: 'Gestão focada na performance da obra e na mitigação de riscos patológicos.' },
-              { step: '04', title: 'Ativos Valorizados', desc: 'Entrega de Projeto compatibilizados e prontos para execução' }
-            ].map((process, index) => (
-              <div key={index} className="text-center p-6">
-                <div className="w-12 h-12 gradient-cta rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-accent-foreground font-bold">{process.step}</span>
-                </div>
-                <h4 className="font-semibold text-primary mb-2">{process.title}</h4>
-                <p className="text-sm text-muted-foreground">{process.desc}</p>
-              </div>
-            ))}
+          <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+            {tx.complementary.map((service, i) => {
+              const Icon = complementaryIcons[i];
+
+              return (
+                <article key={service.title} className={`card-per5 flex h-full flex-col anim-fade-up delay-${i + 1}`}>
+                  <div className="mb-4 flex items-center justify-between gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-sm" style={{ background: 'var(--amber-pale)' }}>
+                      <Icon aria-hidden="true" className="h-4 w-4" style={{ color: 'var(--amber-d)' }} />
+                    </div>
+                    <span
+                      className="label rounded-sm px-2 py-1"
+                      style={{ color: 'var(--amber-d)', background: 'rgba(192,132,89,0.12)', fontSize: '10px' }}
+                    >
+                      {service.note}
+                    </span>
+                  </div>
+                  <h3 className="mb-2 text-xl" style={{ color: 'var(--t-h)', fontFamily: 'Barlow Condensed, sans-serif' }}>
+                    {service.title}
+                  </h3>
+                  <p className="mb-5 text-sm leading-relaxed" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                    {service.desc}
+                  </p>
+                  <ul className="mt-auto space-y-2">
+                    {service.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
+                        <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full" style={{ background: 'var(--amber)' }} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="relative mt-10 flex justify-start anim-fade-up delay-5">
+            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-amber group focus-ring">
+              {tx.ctaMain}
+              <ArrowRight aria-hidden="true" className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
         </div>
       </div>
