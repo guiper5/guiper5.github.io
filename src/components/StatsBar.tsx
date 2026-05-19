@@ -19,7 +19,7 @@ const StatsBar = () => {
                 style={{ color: 'var(--terra)', fontFamily: 'Barlow Condensed, sans-serif' }}
               >
                 <span data-counter={s.value} data-suffix={s.suffix}>
-                  {s.value}{s.suffix}
+                  0{s.suffix}
                 </span>
               </div>
               <div className="label" style={{ color: 'rgba(26,19,16,0.70)', fontSize: '10px' }}>

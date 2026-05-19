@@ -28,7 +28,7 @@ const ParaQuem = () => {
             <button
               key={i}
               onClick={() => setActive(i)}
-              className="flex-1 py-3 text-xs font-medium tracking-widest uppercase transition-all duration-200"
+              className="min-h-11 flex-1 px-1 py-3 text-xs font-medium tracking-widest uppercase transition-all duration-200"
               style={{
                 fontFamily: 'Instrument Sans, sans-serif',
                 background: active === i ? 'var(--amber)' : 'var(--s-card)',
@@ -66,7 +66,7 @@ const ParaQuem = () => {
             </p>
             <button onClick={() => go('orcamento')} className="btn-amber group">
               {seg.cta}
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight aria-hidden="true" className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 

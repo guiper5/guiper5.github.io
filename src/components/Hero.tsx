@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
-import heroImage from '@/assets/hero-blueprints.png';
 import { useLanguage } from '@/contexts/LanguageContext';
+
+const whatsappHref = 'https://wa.me/5519991508664';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -13,23 +14,22 @@ const Hero = () => {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ backgroundColor: 'var(--s-dark)' }}
     >
-      {/* Photo with heavy overlay */}
+      {/* Technical background without photographic clutter */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="Civil infrastructure works — PER5"
-          className="w-full h-full object-cover opacity-20"
-        />
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(rgba(192,132,89,0.04) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(192,132,89,0.04) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(192,132,89,0.055) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(192,132,89,0.045) 1px, transparent 1px)`,
             backgroundSize: '60px 60px',
           }}
         />
         <div
-          className="absolute right-0 top-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+          className="absolute inset-x-0 bottom-0 h-2/3"
+          style={{ background: 'linear-gradient(to top, rgba(26,19,16,0.96), transparent)' }}
+        />
+        <div
+          className="absolute right-[-160px] bottom-[-180px] w-[620px] h-[620px] rounded-full pointer-events-none"
           style={{ background: 'radial-gradient(circle, rgba(192,132,89,0.12) 0%, transparent 70%)' }}
         />
       </div>
@@ -64,6 +64,7 @@ const Hero = () => {
             </div>
 
             <h1
+              aria-label={tx.h1.join(' ')}
               className="mb-6 overflow-hidden"
               style={{
                 fontFamily: 'Barlow Condensed, sans-serif',
@@ -78,6 +79,7 @@ const Hero = () => {
               {tx.h1.map((line, i) => (
                 <span
                   key={i}
+                  aria-hidden="true"
                   className="block"
                   style={{
                     animation: `slideUp 0.8s ${0.4 + i * 0.15}s both`,
@@ -102,13 +104,13 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4" style={{ animation: 'slideUp 0.8s 1.1s both' }}>
-              <button onClick={() => go('orcamento')} className="btn-amber group">
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-amber group focus-ring">
                 {tx.cta1}
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button onClick={() => go('servicos')} className="btn-ghost group">
+                <ArrowRight aria-hidden="true" className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <button onClick={() => go('servicos')} className="btn-ghost group focus-ring">
                 {tx.cta2}
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight aria-hidden="true" className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
@@ -125,7 +127,7 @@ const Hero = () => {
                   minWidth: '280px',
                 }}
               >
-                <span style={{ color: 'var(--amber)', fontSize: '14px', fontWeight: 700 }}>✓</span>
+                <span aria-hidden="true" style={{ color: 'var(--amber)', fontSize: '14px', fontWeight: 700 }}>✓</span>
                 <span className="text-xs" style={{ fontFamily: 'Instrument Sans, sans-serif', color: 'var(--fumo)' }}>
                   {b}
                 </span>

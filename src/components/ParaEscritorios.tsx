@@ -6,7 +6,7 @@ const scrollTo = (id: string) =>
 const garantias = [
   { icon: Shield, label: 'Confidencialidade garantida', desc: 'Seu cliente continua sendo seu cliente.' },
   { icon: Clock,  label: 'Prazo definido em contrato',  desc: 'Cronograma real, sem prazo aberto.' },
-  { icon: Award,  label: 'Qualidade executiva',         desc: 'Civil 3D, ABNT, ART — padrão de grande escritório.' },
+  { icon: Award,  label: 'Qualidade executiva',         desc: 'Softwares modernos, ABNT e ART — entrega técnica documentada.' },
 ];
 
 const ParaEscritorios = () => {

@@ -1,6 +1,6 @@
 const diferenciais = [
   'Especialização em infraestrutura — não somos generalistas',
-  'Projetos em Civil 3D e AutoCAD com padrão executivo',
+  'Projetos com softwares modernos em padrão OpenBIM',
   'Emissão de ART e responsabilidade técnica pelo CREA',
   'Integração com projetos de pavimentação, fundações e arquitetura',
   'Atendimento direto com o engenheiro responsável — sem intermediários',
@@ -27,13 +27,12 @@ const About = () => {
             className="text-3xl md:text-4xl font-bold text-heading mb-5"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
-            Projetos de infraestrutura que cabem no seu projeto —
-            sem precisar de uma grande empresa
+            Projetos de infraestrutura com clareza técnica,
+            agilidade e acesso direto ao engenheiro
           </h2>
           <p className="text-body-c text-lg leading-relaxed">
-            Projetos de terraplenagem e drenagem sempre foram território de grandes escritórios.
-            Equipe pesada, prazos longos, burocracia e ticket fora do alcance da maioria das
-            construtoras e loteadoras regionais. <strong className="text-heading">A PER5 nasceu para mudar isso.</strong>
+            Projetos de terraplenagem e drenagem pedem rigor, documentação e uma rotina de
+            decisão clara. <strong className="text-heading">A PER5 existe para facilitar esse caminho.</strong>
           </p>
         </div>
 
@@ -44,9 +43,8 @@ const About = () => {
           <div>
             <p className="text-body-c leading-relaxed mb-5">
               Somos um escritório independente especializado em projetos de infraestrutura civil.
-              Entregamos a mesma qualidade técnica que as grandes consultorias entregam — com Civil 3D,
-              compatibilização de disciplinas, normas ABNT, ART — mas com a agilidade de quem atende
-              você diretamente, responde no mesmo dia e não some depois de assinar o contrato.
+              Entregamos projetos com softwares modernos em padrão OpenBIM, compatibilização de
+              disciplinas, normas ABNT e ART — com a agilidade de quem atende você diretamente.
             </p>
             <p className="text-body-c leading-relaxed mb-5">
               Para escritórios de arquitetura e engenharia, somos o backoffice de infraestrutura que

@@ -32,7 +32,7 @@ const Contact = () => {
                 style={{ background: 'var(--s-card)', border: '1px solid rgba(192,132,89,0.25)' }}
               >
                 <div className="w-11 h-11 rounded-sm flex items-center justify-center flex-shrink-0" style={{ background: 'var(--amber)' }}>
-                  <MessageCircle className="h-5 w-5" style={{ color: 'var(--areia)' }} />
+                  <MessageCircle aria-hidden="true" className="h-5 w-5" style={{ color: 'var(--areia)' }} />
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest mb-0.5" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
@@ -50,7 +50,7 @@ const Contact = () => {
                 style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}
               >
                 <div className="w-11 h-11 rounded-sm flex items-center justify-center flex-shrink-0" style={{ background: 'var(--amber-pale)' }}>
-                  <Mail className="h-5 w-5" style={{ color: 'var(--amber-d)' }} />
+                  <Mail aria-hidden="true" className="h-5 w-5" style={{ color: 'var(--amber-d)' }} />
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest mb-0.5" style={{ color: 'var(--t-m)', fontFamily: 'Instrument Sans, sans-serif' }}>
@@ -70,7 +70,7 @@ const Contact = () => {
                   className="flex-1 flex items-center gap-3 p-4 rounded-sm transition-all duration-200"
                   style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}
                 >
-                  <Instagram className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--amber)' }} />
+                  <Instagram aria-hidden="true" className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--amber)' }} />
                   <span className="text-sm" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
                     {tx.channels.ig}
                   </span>
@@ -82,7 +82,7 @@ const Contact = () => {
                   className="flex-1 flex items-center gap-3 p-4 rounded-sm transition-all duration-200"
                   style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}
                 >
-                  <Linkedin className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--amber)' }} />
+                  <Linkedin aria-hidden="true" className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--amber)' }} />
                   <span className="text-sm" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
                     {tx.channels.li}
                   </span>
@@ -94,7 +94,7 @@ const Contact = () => {
             <div className="space-y-3">
               <div className="p-5 rounded-sm" style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}>
                 <div className="flex items-center gap-2 mb-4">
-                  <MapPin className="h-4 w-4" style={{ color: 'var(--amber)' }} />
+                  <MapPin aria-hidden="true" className="h-4 w-4" style={{ color: 'var(--amber)' }} />
                   <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
                     {tx.atuacao.title}
                   </span>
@@ -111,7 +111,7 @@ const Contact = () => {
 
               <div className="p-5 rounded-sm" style={{ background: 'var(--s-card)', border: '1px solid var(--bd)' }}>
                 <div className="flex items-center gap-2 mb-4">
-                  <Clock className="h-4 w-4" style={{ color: 'var(--amber)' }} />
+                  <Clock aria-hidden="true" className="h-4 w-4" style={{ color: 'var(--amber)' }} />
                   <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
                     {tx.horario.title}
                   </span>

@@ -21,16 +21,16 @@
     --mid:        #231A16;
     --madeira:    #3E3632;
     --pedra:      #6B5C52;
-    --fumo:       #8A7A6E;
+    --fumo:       #EAE0D8;
     --areia:      #F4EDE6;
     --areia-d:    #EAE0D8;
-    --white:      #FFFFFF;
+    --white:      #F4EDE6;
 
     /* ── Semânticos — LIGHT MODE (default) ── */
-    --s-page:      #FFFFFF;          /* bg página */
+    --s-page:      #F4EDE6;          /* bg página */
     --s-1:         #F4EDE6;          /* seções neutras (areia) */
     --s-2:         #EAE0D8;          /* seções alt (areia-d) */
-    --s-card:      #FFFFFF;          /* cards */
+    --s-card:      #F4EDE6;          /* cards */
     --s-dark:      #3E3632;          /* seções sempre escuras → madeira no light */
     --s-dark-card: #4E423C;          /* cards dentro de seções escuras */
     --s-footer:    #2E2420;          /* footer */
@@ -54,20 +54,20 @@
     /* ── Shadcn vars (mantidos para compatibilidade dos ui/ components) ── */
     --background:         35 25% 93%;
     --foreground:         20 13% 15%;
-    --card:               0 0% 100%;
+    --card:               35 25% 93%;
     --card-foreground:    20 13% 15%;
-    --popover:            0 0% 100%;
+    --popover:            35 25% 93%;
     --popover-foreground: 20 13% 15%;
     --primary:            25 37% 55%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 20 13% 8%;
     --secondary:          20 7% 22%;
     --secondary-foreground: 35 25% 93%;
     --muted:              30 15% 88%;
     --muted-foreground:   20 10% 45%;
     --accent:             25 37% 55%;
-    --accent-foreground:  0 0% 100%;
+    --accent-foreground:  20 13% 8%;
     --destructive:        0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 35 25% 93%;
     --border:             30 12% 84%;
     --input:              30 12% 88%;
     --ring:               25 37% 55%;
@@ -85,8 +85,8 @@
     --s-footer:    #120D0B;          /* footer */
 
     --t-h:         #F4EDE6;          /* headings → areia */
-    --t-b:         #8A7A6E;          /* body → fumo */
-    --t-m:         #6B5C52;          /* muted → pedra */
+    --t-b:         #EAE0D8;          /* body → areia-d */
+    --t-m:         #D4A07A;          /* muted → amber light */
 
     --bd:          rgba(244,237,230,0.08);
     --bd-subtle:   rgba(244,237,230,0.05);
@@ -98,13 +98,13 @@
     --popover:            20 13% 12%;
     --popover-foreground: 35 25% 93%;
     --primary:            25 37% 55%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 20 13% 8%;
     --secondary:          20 10% 18%;
     --secondary-foreground: 35 25% 93%;
     --muted:              20 10% 18%;
     --muted-foreground:   30 10% 60%;
     --accent:             25 37% 55%;
-    --accent-foreground:  0 0% 100%;
+    --accent-foreground:  20 13% 8%;
     --border:             20 10% 22%;
     --input:              20 10% 22%;
     --ring:               25 37% 55%;
@@ -113,21 +113,29 @@
 
 @layer base {
   * { @apply border-border; }
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  [id] {
+    scroll-margin-top: 88px;
+  }
 
   body {
-    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-family: 'Instrument Sans';
     font-size: 15px;
     line-height: 1.65;
     color: var(--pedra);
     background-color: var(--areia);
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   /* Headings — Barlow Condensed, UPPERCASE */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Barlow Condensed', system-ui, sans-serif;
+    font-family: 'Barlow Condensed';
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.01em;
@@ -207,20 +215,20 @@
     align-items: center;
     gap: 8px;
     background: var(--amber);
-    color: var(--areia);
+    color: var(--terra);
     font-family: 'Instrument Sans', sans-serif;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 12px 24px;
     border-radius: 2px;
     border: none;
     cursor: pointer;
-    transition: background 0.18s ease, transform 0.18s ease;
+    transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     text-decoration: none;
     letter-spacing: 0.02em;
     box-shadow: 0 4px 16px rgba(192,132,89,0.28);
   }
-  .btn-amber:hover  { background: var(--amber-l); }
+  .btn-amber:hover  { background: var(--amber-l); transform: translateY(-2px); box-shadow: 0 18px 38px rgba(192,132,89,0.34); }
   .btn-amber:active { background: var(--amber-d); transform: scale(0.98); }
 
   .btn-ghost {
@@ -268,9 +276,45 @@
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
   .card-per5:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
     border-color: var(--amber);
+  }
+
+  .service-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(192,132,89,0.14), transparent 52%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out);
+  }
+  .service-card:hover::before {
+    opacity: 1;
+  }
+  .service-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .portfolio-carousel {
+    scrollbar-width: none;
+  }
+  .portfolio-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .portfolio-track {
+    animation: portfolioMarquee var(--portfolio-duration, 45s) linear infinite;
+    will-change: transform;
+  }
+  @keyframes portfolioMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   .card-featured-amber {
@@ -281,12 +325,13 @@
   .input-per5 {
     width: 100%;
     font-family: 'Instrument Sans', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--madeira);
     background: var(--white);
     border: 1.5px solid var(--areia-d);
     border-radius: 2px;
     padding: 10px 14px;
+    min-height: 44px;
     transition: border-color 0.18s ease, box-shadow 0.18s ease;
     outline: none;
   }
@@ -294,6 +339,20 @@
   .input-per5:focus {
     border-color: var(--amber);
     box-shadow: 0 0 0 3px rgba(192,132,89,0.14);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  .focus-ring:focus-visible,
+  .btn-amber:focus-visible,
+  .btn-ghost:focus-visible,
+  .btn-outline-amber:focus-visible,
+  .input-per5:focus-visible {
+    outline: 2px solid var(--amber-l);
+    outline-offset: 3px;
   }
 
   /* ── Animações de scroll (IntersectionObserver) ── */
@@ -321,6 +380,16 @@
     opacity: 1 !important;
     transform: none !important;
   }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 
   /* Delays escalonados */
   .delay-1 { transition-delay: 0.1s; }
@@ -332,18 +401,6 @@
   .delay-7 { transition-delay: 0.7s; }
   .delay-8 { transition-delay: 0.8s; }
 
-  /* ── Marquee (clientes) ── */
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  .marquee-track {
-    display: flex;
-    animation: marquee 28s linear infinite;
-    width: max-content;
-  }
-  .marquee-track:hover { animation-play-state: paused; }
-
   /* ── Process line ── */
   #processLine {
     width: 0%;
@@ -353,4 +410,40 @@
 
   /* ── Counter numbers ── */
   [data-counter] { font-variant-numeric: tabular-nums; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.001ms !important;
+    }
+
+    .portfolio-track {
+      animation: none !important;
+      transform: none !important;
+      will-change: auto;
+    }
+
+    h1 span,
+    .animate-bounce,
+    .animate-pulse {
+      animation: none !important;
+    }
+
+    .anim-fade-up,
+    .anim-fade-left,
+    .anim-fade-right,
+    .anim-scale,
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 }

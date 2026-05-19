@@ -9,6 +9,8 @@ export function useScrollReveal() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('anim-visible');
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -19,7 +21,7 @@ export function useScrollReveal() {
     if (!el) return;
 
     el.querySelectorAll<HTMLElement>(
-      '.anim-fade-up, .anim-fade-left, .anim-fade-right, .anim-scale'
+      '.anim-fade-up, .anim-fade-left, .anim-fade-right, .anim-scale, .reveal'
     ).forEach((child) => observer.observe(child));
 
     return () => observer.disconnect();

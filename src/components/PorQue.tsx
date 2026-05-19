@@ -10,7 +10,7 @@ const PorQue = () => {
     <section
       id="por-que"
       ref={ref as React.RefObject<HTMLDivElement>}
-      className="py-24"
+      className="overflow-hidden py-24"
       style={{ backgroundColor: 'var(--s-dark)' }}
     >
       <div className="container mx-auto px-4">
@@ -67,7 +67,7 @@ const PorQue = () => {
             <ul className="space-y-4">
               {tx.diferenciais.map((item, i) => (
                 <li key={i} className={`flex items-start gap-3 anim-fade-right delay-${i + 1}`}>
-                  <span className="flex-shrink-0 mt-0.5 font-bold text-sm" style={{ color: 'var(--amber)' }}>✓</span>
+                  <span aria-hidden="true" className="flex-shrink-0 mt-0.5 font-bold text-sm" style={{ color: 'var(--amber)' }}>✓</span>
                   <span className="text-sm leading-relaxed" style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}>
                     {item}
                   </span>
