@@ -723,6 +723,59 @@ Usa `visibility` (não `display:none`) para permitir transição de opacidade.
 - Solução: `useCounters()` passou a receber uma chave de atualização baseada nos labels/valores de `StatsBar`, reiniciando os counters quando o idioma muda.
 - Também foi adicionado suporte a `prefers-reduced-motion` para os counters exibirem o valor final sem animação quando o usuário pede movimento reduzido.
 
+## Páginas Regionais de SEO (ocultas) — 22/07
+
+Criadas 3 páginas de destino focadas em SEO/AEO para os termos "engenharia civil", "patologia das obras" e "consultoria técnica". Não têm link em nenhum menu, header, footer ou seção da home — são descobertas só via `sitemap.xml`/`robots.txt` e busca orgânica.
+
+**URLs (produção, após deploy):**
+- `https://per5.com.br/engenharia-civil/regiao-19` — Campinas e região (DDD 19), atendimento presencial
+- `https://per5.com.br/engenharia-civil/sao-paulo` — Grande São Paulo e interior, atendimento remoto
+- `https://per5.com.br/engenharia-civil/brasil` — cobertura nacional 100% remota
+
+**Arquivos:**
+- `src/data/regionalSeo.ts` — conteúdo (meta tags, hero, seções de engenharia/patologia/consultoria, cidades atendidas, FAQ) por região
+- `src/components/seo/RegionalLandingPage.tsx` — template compartilhado pelas 3 páginas, reaproveitando Header/Footer e os tokens visuais do site
+- `src/pages/seo/Engenharia{Regiao19,SaoPaulo,Brasil}.tsx` — wrappers finos que injetam os dados no template
+- `src/hooks/useSEO.ts` — como o site é uma SPA sem SSR/prerender (só `vite build` + GitHub Pages), esse hook atualiza title, meta description, canonical, Open Graph e JSON-LD no `<head>` a cada troca de rota. `index.html` ficou só com as tags estáticas mínimas; a home também passou a usar esse hook (`src/pages/Index.tsx`) para manter consistência.
+- `src/hooks/useSectionNav.ts` — corrige os links do Header/Footer ("Serviços", "Contato" etc.) para navegarem até `/#id` quando o usuário está numa página regional em vez de tentar rolar um elemento que não existe ali.
+
+**SEO técnico por página:** JSON-LD `ProfessionalService` (com `areaServed` específico da região), `BreadcrumbList` e `FAQPage`. Rotas adicionadas em `public/sitemap.xml`; `public/robots.txt` ganhou a diretiva `Sitemap:`.
+
+**Limitação conhecida:** sem SSR/prerender, o HTML inicial de qualquer rota é genérico até o React rodar. Googlebot/Bingbot executam JS e devem indexar normalmente, mas crawlers simples ou alguns bots de IA sem execução de JS podem não ver o conteúdo. Se isso for um problema, o próximo passo é prerender essas rotas no build (ex.: `vite-plugin-prerender` ou um passo no `deploy.yml`).
+
+## Páginas de SEO por Serviço, Segmento e Documentação (ocultas) — 22/07
+
+Segunda leva de páginas ocultas, expandindo a mesma estratégia das páginas regionais para três novos eixos: serviço, segmento de cliente e documentação/estudos técnicos, mais um glossário. Mesma regra das regionais: nenhum link nelas em menu, header, footer ou home.
+
+**URLs por serviço (nacional, sem recorte de região):**
+- `https://per5.com.br/engenharia-civil/servicos/terraplenagem`
+- `https://per5.com.br/engenharia-civil/servicos/drenagem-pluvial`
+- `https://per5.com.br/engenharia-civil/servicos/pavimentacao`
+- `https://per5.com.br/engenharia-civil/servicos/projeto-urbanistico`
+
+**URLs por segmento de cliente:**
+- `https://per5.com.br/engenharia-civil/para/construtoras`
+- `https://per5.com.br/engenharia-civil/para/industrias`
+- `https://per5.com.br/engenharia-civil/para/loteadoras`
+- `https://per5.com.br/engenharia-civil/para/escritorios-de-arquitetura`
+
+**URLs de documentação e estudos técnicos:**
+- `https://per5.com.br/engenharia-civil/documentacao/regularizacao-de-obras`
+- `https://per5.com.br/engenharia-civil/documentacao/estudos-e-planos`
+
+**Glossário técnico:**
+- `https://per5.com.br/engenharia-civil/glossario` — 18 termos técnicos (ART, corte e aterro, EIV, RIT, habite-se, patologia das obras, tipos de pavimento etc.), schema `DefinedTermSet`
+
+**Arquivos:**
+- `src/data/seoLanding.ts` — dado único para as 10 páginas de serviço/segmento/documentação, tipado por `category: 'servico' | 'segmento' | 'documentacao'`
+- `src/components/seo/GenericSeoLandingPage.tsx` — template compartilhado pelas 10 páginas (hero, destaques, 2 seções de tópico, FAQ, CTA, links cruzados só entre páginas da mesma categoria)
+- `src/pages/seo/{Servico,Segmento,Documentacao}Route.tsx` — rotas com parâmetro `:slug`, buscam o dado em `seoLanding.ts` e caem no `NotFound` se o slug não existir
+- `src/data/glossario.ts` + `src/pages/seo/Glossario.tsx` — página própria, formato de lista de definições em vez do template de tópicos
+
+**Rotas em `App.tsx`:** `/engenharia-civil/servicos/:slug`, `/engenharia-civil/para/:slug`, `/engenharia-civil/documentacao/:slug`, `/engenharia-civil/glossario`. Todas adicionadas ao `public/sitemap.xml`. Mesma limitação de SSR/prerender das páginas regionais se aplica aqui.
+
+**Total de páginas ocultas até agora:** 3 regionais + 10 (serviço/segmento/documentação) + 1 glossário = 14.
+
 *Documento vivo — atualizar conforme decisões forem tomadas ao longo do projeto.*
 
 ---

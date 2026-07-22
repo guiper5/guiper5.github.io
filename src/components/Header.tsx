@@ -3,12 +3,14 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 import Logo from '@/assets/logo.png';
 import { useTheme } from '@/hooks/useTheme';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useSectionNav } from '@/hooks/useSectionNav';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobile] = useState(false);
   const { theme, toggle: toggleTheme } = useTheme();
   const { t, toggle: toggleLang } = useLanguage();
+  const sectionNav = useSectionNav();
   const whatsappHref = 'https://wa.me/5519991508664';
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const Header = () => {
   }, []);
 
   const go = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    sectionNav(id);
     setMobile(false);
   };
 
