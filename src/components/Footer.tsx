@@ -1,10 +1,11 @@
 import { MessageCircle, Instagram, Linkedin, Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useSectionNav } from '@/hooks/useSectionNav';
 
 const Footer = () => {
   const { t } = useLanguage();
   const tx = t.footer;
-  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = useSectionNav();
 
   const socials = [
     { icon: MessageCircle, href: 'https://wa.me/5519991508664',            label: 'WhatsApp' },
