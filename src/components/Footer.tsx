@@ -178,6 +178,20 @@ const Footer = () => {
           style={{ borderTop: '1px solid rgba(244,237,230,0.08)', color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
         >
           <p>{tx.copyright}</p>
+          <p>
+            {tx.developedBy}{' '}
+            <a
+              href="https://skytalos.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors duration-200"
+              style={{ color: 'var(--fumo)' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--areia)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'var(--fumo)')}
+            >
+              Skytalos
+            </a>
+          </p>
           <p>{tx.location}</p>
         </div>
       </div>

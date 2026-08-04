@@ -302,6 +302,7 @@ export const translations = {
       segmentLinks: ['Construtoras','Indústrias','Loteadoras','Escritórios'],
       copyright: '© 2026 PER5 Projetos e Consultoria. Todos os direitos reservados.',
       location: 'Campinas, SP — Atendemos todo o Brasil',
+      developedBy: 'Desenvolvido por',
     },
   },
 
@@ -604,6 +605,7 @@ export const translations = {
       segmentLinks: ['Builders','Industries','Developers','Offices'],
       copyright: '© 2026 PER5 Projetos e Consultoria. All rights reserved.',
       location: 'Campinas, SP — Nationwide service in Brazil',
+      developedBy: 'Developed by',
     },
   },
 } as const;
