@@ -1,5 +1,13 @@
-# Documentação interna de estratégia/negócio: não deve ficar em repositório público
-per5_site_context05-26.md
+# ── Documentação interna ──────────────────────────────────────
+# Requisitos, contexto de negócio, auditorias e notas de projeto
+# não vão para o repositório público. Markdown é ignorado por
+# padrão; libere explicitamente o que for realmente público.
+*.md
+!README.md
 
-# Saída de build (gerada por vite build + scripts/build-seo.mts)
+# ── Saída de build ────────────────────────────────────────────
+# Gerada por vite build + scripts/build-seo.mts
 dist/
+
+# ── Artefatos locais de QA ────────────────────────────────────
+qa-mobile-screenshots/
