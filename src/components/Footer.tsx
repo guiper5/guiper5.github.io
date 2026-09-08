@@ -1,9 +1,26 @@
 import { MessageCircle, Instagram, Linkedin, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSectionNav } from '@/hooks/useSectionNav';
 
+/**
+ * Páginas de conteúdo que ficam fora do menu principal. O rodapé é o único
+ * lugar do site visível que aponta para elas. Sem isso o cluster inteiro
+ * seria órfão, e página órfã ranqueia mal por mais bem escrita que seja.
+ */
+const moreLinks: { to: string; pt: string; en: string }[] = [
+  { to: '/engenharia-civil/sala-tecnica', pt: 'Sala Técnica', en: 'Sala Técnica' },
+  { to: '/engenharia-civil/cidades', pt: 'Cidades atendidas', en: 'Service areas' },
+  { to: '/engenharia-civil/regiao-19', pt: 'Região de Campinas', en: 'Campinas region' },
+  { to: '/engenharia-civil/sao-paulo', pt: 'São Paulo', en: 'São Paulo' },
+  { to: '/engenharia-civil/brasil', pt: 'Todo o Brasil', en: 'Nationwide' },
+  { to: '/engenharia-civil/documentacao/regularizacao-de-obras', pt: 'Regularização de obras', en: 'Construction compliance' },
+  { to: '/engenharia-civil/documentacao/estudos-e-planos', pt: 'Estudos e planos', en: 'Studies and plans' },
+  { to: '/engenharia-civil/glossario', pt: 'Glossário técnico', en: 'Technical glossary' },
+];
+
 const Footer = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const tx = t.footer;
   const scrollTo = useSectionNav();
 
@@ -16,6 +33,28 @@ const Footer = () => {
 
   const serviceIds = ['servicos','servicos','servicos','servicos','servicos','servicos'];
   const segmentIds = ['audiencia','audiencia','audiencia','audiencia'];
+
+  // Paralelos a tx.serviceLinks / tx.segmentLinks: quando existe página dedicada,
+  // o item vira <Link>; quando não existe (Topografia), continua como âncora.
+  const serviceRoutes: (string | null)[] = [
+    '/engenharia-civil/servicos/terraplenagem',
+    '/engenharia-civil/servicos/drenagem-pluvial',
+    '/engenharia-civil/servicos/pavimentacao',
+    '/engenharia-civil/servicos/projeto-urbanistico',
+    null,
+    '/engenharia-civil/sala-tecnica',
+  ];
+  const segmentRoutes: (string | null)[] = [
+    '/engenharia-civil/para/construtoras',
+    '/engenharia-civil/para/industrias',
+    '/engenharia-civil/para/loteadoras',
+    '/engenharia-civil/para/escritorios-de-arquitetura',
+  ];
+
+  const linkStyle = { color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' } as const;
+  const linkClass = 'block min-h-11 py-2 text-left text-sm transition-colors duration-200';
+  const hoverIn = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = 'var(--areia)');
+  const hoverOut = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = 'var(--fumo)');
 
   return (
     <footer style={{ background: 'var(--s-footer)' }}>
@@ -73,15 +112,15 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {tx.serviceLinks.map((label, i) => (
                 <li key={label}>
-                  <button
-                    onClick={() => scrollTo(serviceIds[i])}
-                    className="block min-h-11 py-2 text-left text-sm transition-colors duration-200"
-                    style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--areia)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--fumo)')}
-                  >
-                    {label}
-                  </button>
+                  {serviceRoutes[i] ? (
+                    <Link to={serviceRoutes[i] as string} className={linkClass} style={linkStyle} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
+                      {label}
+                    </Link>
+                  ) : (
+                    <button onClick={() => scrollTo(serviceIds[i])} className={linkClass} style={linkStyle} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
+                      {label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -95,15 +134,15 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {tx.segmentLinks.map((label, i) => (
                 <li key={label}>
-                  <button
-                    onClick={() => scrollTo(segmentIds[i])}
-                    className="block min-h-11 py-2 text-left text-sm transition-colors duration-200"
-                    style={{ color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--areia)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--fumo)')}
-                  >
-                    {label}
-                  </button>
+                  {segmentRoutes[i] ? (
+                    <Link to={segmentRoutes[i] as string} className={linkClass} style={linkStyle} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
+                      {label}
+                    </Link>
+                  ) : (
+                    <button onClick={() => scrollTo(segmentIds[i])} className={linkClass} style={linkStyle} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
+                      {label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -171,6 +210,32 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* Conteúdo técnico: páginas fora do menu principal */}
+        <nav
+          aria-label={lang === 'pt' ? 'Conteúdo técnico' : 'Technical content'}
+          className="mb-8 pt-8"
+          style={{ borderTop: '1px solid rgba(244,237,230,0.08)' }}
+        >
+          <p className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: 'var(--amber)', fontFamily: 'Instrument Sans, sans-serif' }}>
+            {lang === 'pt' ? 'Conteúdo técnico' : 'Technical content'}
+          </p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-1">
+            {moreLinks.map((item) => (
+              <li key={item.to}>
+                <Link
+                  to={item.to}
+                  className="inline-flex min-h-11 items-center text-sm transition-colors duration-200"
+                  style={linkStyle}
+                  onMouseEnter={hoverIn}
+                  onMouseLeave={hoverOut}
+                >
+                  {lang === 'pt' ? item.pt : item.en}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         {/* Bottom bar */}
         <div

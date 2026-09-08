@@ -32,7 +32,8 @@ jobs:
 
       - name: Build
         run: npm run build
-        # garanta no package.json: "build": "vite build"
+        # "build": "vite build" + "postbuild": gera sitemap.xml, llms.txt e o
+        # <head> estático de cada rota (scripts/build-seo.mts).
 
       # Inclui CNAME e .nojekyll no artefato (se existirem no root do repo)
       - name: Include CNAME and .nojekyll
@@ -41,6 +42,10 @@ jobs:
           if [ -f .nojekyll ]; then cp .nojekyll dist/; fi
 
       # SPA fallback (React Router): 404.html -> index.html
+      # IMPORTANTE: dist/index.html precisa continuar sendo o shell genérico.
+      # build-seo.mts nunca reescreve a home justamente por causa desta cópia —
+      # um 404.html com conteúdo de uma página específica serviria a meta errada
+      # para toda URL desconhecida.
       - name: SPA 404 fallback
         run: cp dist/index.html dist/404.html
 

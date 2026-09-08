@@ -12,6 +12,9 @@ import ServicoRoute from "./pages/seo/ServicoRoute";
 import SegmentoRoute from "./pages/seo/SegmentoRoute";
 import DocumentacaoRoute from "./pages/seo/DocumentacaoRoute";
 import Glossario from "./pages/seo/Glossario";
+import SalaTecnicaPage from "./pages/seo/SalaTecnicaPage";
+import CidadesHub from "./pages/seo/CidadesHub";
+import CidadeRoute from "./pages/seo/CidadeRoute";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +33,9 @@ const App = () => (
           <Route path="/engenharia-civil/para/:slug" element={<SegmentoRoute />} />
           <Route path="/engenharia-civil/documentacao/:slug" element={<DocumentacaoRoute />} />
           <Route path="/engenharia-civil/glossario" element={<Glossario />} />
+          <Route path="/engenharia-civil/sala-tecnica" element={<SalaTecnicaPage />} />
+          <Route path="/engenharia-civil/cidades" element={<CidadesHub />} />
+          <Route path="/engenharia-civil/cidades/:slug" element={<CidadeRoute />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

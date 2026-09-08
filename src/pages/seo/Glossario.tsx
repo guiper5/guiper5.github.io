@@ -128,6 +128,16 @@ const Glossario = () => {
                     </dt>
                     <dd className="text-sm leading-relaxed" style={{ color: 'var(--t-b)', fontFamily: 'Instrument Sans, sans-serif' }}>
                       {item.definition}
+                      {item.relatedPath && (
+                        <Link
+                          to={item.relatedPath}
+                          className="mt-3 inline-flex min-h-11 items-center gap-1.5 text-xs focus-ring group"
+                          style={{ color: 'var(--amber-d)', fontWeight: 600 }}
+                        >
+                          {item.relatedLabel}
+                          <ArrowRight aria-hidden="true" className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      )}
                     </dd>
                   </div>
                 ))}

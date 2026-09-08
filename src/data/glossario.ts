@@ -1,36 +1,53 @@
 export interface GlossaryTerm {
   term: string;
   definition: string;
+  /** Página que aprofunda o termo. Quando existe, o termo vira link. */
+  relatedPath?: string;
+  relatedLabel?: string;
 }
 
 export const glossaryTerms: GlossaryTerm[] = [
   {
     term: 'ART (Anotação de Responsabilidade Técnica)',
     definition: 'Documento emitido junto ao CREA que registra a responsabilidade técnica de um engenheiro sobre um projeto ou serviço. É a ART que garante, formalmente, quem responde tecnicamente pelo que foi entregue.',
+    relatedPath: '/engenharia-civil/documentacao/regularizacao-de-obras',
+    relatedLabel: 'Regularização de obras',
   },
   {
     term: 'Corte e aterro',
     definition: 'As duas operações básicas de um projeto de terraplenagem. Corte é a remoção de terra de um ponto mais alto do terreno; aterro é a adição de terra em um ponto mais baixo, para nivelar a superfície conforme o projeto.',
+    relatedPath: '/engenharia-civil/servicos/terraplenagem',
+    relatedLabel: 'Projeto de terraplenagem',
   },
   {
     term: 'Cota de implantação',
     definition: 'A altura de referência definida em projeto para o nível final de uma plataforma, via ou edificação. É a partir dela que se calcula quanto terreno precisa ser cortado ou aterrado em cada ponto.',
+    relatedPath: '/engenharia-civil/servicos/terraplenagem',
+    relatedLabel: 'Projeto de terraplenagem',
   },
   {
     term: 'Drenagem pluvial horizontal',
     definition: 'Sistema de captação e escoamento de água de chuva em áreas externas, como vias, pátios e loteamentos. Diferente do sistema hidrossanitário vertical de uma edificação, que trata do esgoto e da água servida dentro do prédio.',
+    relatedPath: '/engenharia-civil/servicos/drenagem-pluvial',
+    relatedLabel: 'Projeto de drenagem pluvial',
   },
   {
-    term: 'EIV — Estudo de Impacto de Vizinhança',
+    term: 'EIV (Estudo de Impacto de Vizinhança)',
     definition: 'Estudo técnico exigido pela legislação municipal para empreendimentos de determinado porte, que avalia os efeitos do projeto sobre a região onde ele será instalado, como adensamento, infraestrutura urbana e qualidade de vida da vizinhança.',
+    relatedPath: '/engenharia-civil/documentacao/estudos-e-planos',
+    relatedLabel: 'Estudos e planos',
   },
   {
     term: 'Habite-se',
     definition: 'Documento emitido pela prefeitura que atesta que uma construção foi concluída conforme o projeto aprovado e está apta para uso. É pré-requisito para financiamento bancário na maioria dos casos.',
+    relatedPath: '/engenharia-civil/documentacao/regularizacao-de-obras',
+    relatedLabel: 'Regularização de obras',
   },
   {
     term: 'Mancha de corte e aterro',
     definition: 'Representação gráfica, em planta, das áreas do terreno que vão receber corte e das áreas que vão receber aterro, conforme o projeto de terraplenagem.',
+    relatedPath: '/engenharia-civil/servicos/terraplenagem',
+    relatedLabel: 'Projeto de terraplenagem',
   },
   {
     term: 'Memorial de cálculo',
@@ -39,6 +56,8 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: 'Offtracking',
     definition: 'Projeto técnico que calcula o raio de manobra necessário para veículos de grande porte, como carretas, circularem com segurança dentro de um pátio, via de acesso ou terminal logístico.',
+    relatedPath: '/engenharia-civil/servicos/projeto-urbanistico',
+    relatedLabel: 'Projeto urbanístico',
   },
   {
     term: 'OpenBIM / IFC',
@@ -47,30 +66,42 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: 'Patologia das obras',
     definition: 'Área da engenharia que estuda as manifestações de defeito ou degradação em uma construção, como trincas, infiltrações e recalques, buscando identificar a causa real do problema antes de indicar a solução.',
+    relatedPath: '/engenharia-civil/regiao-19',
+    relatedLabel: 'Patologia das obras em Campinas',
   },
   {
     term: 'Pavimento flexível',
     definition: 'Pavimento executado em camadas asfálticas sobre uma base preparada. Costuma ser a escolha para vias e acessos com tráfego misto, quando a durabilidade extrema do concreto não é exigida.',
+    relatedPath: '/engenharia-civil/servicos/pavimentacao',
+    relatedLabel: 'Projeto de pavimentação',
   },
   {
     term: 'Pavimento intertravado',
     definition: 'Também chamado de paver, é o pavimento formado por blocos de concreto pré-moldados encaixados entre si. Permite manutenção pontual, já que um bloco danificado pode ser substituído individualmente, sem refazer toda a via.',
+    relatedPath: '/engenharia-civil/servicos/pavimentacao',
+    relatedLabel: 'Projeto de pavimentação',
   },
   {
     term: 'Pavimento permeável',
     definition: 'Pavimento projetado para permitir a infiltração da água de chuva através da própria superfície, reduzindo o volume de água que precisa ser captado por um sistema de drenagem convencional.',
+    relatedPath: '/engenharia-civil/servicos/pavimentacao',
+    relatedLabel: 'Projeto de pavimentação',
   },
   {
     term: 'Pavimento rígido',
     definition: 'Tipo de pavimento executado em placas de concreto, indicado para áreas de tráfego pesado por conta da alta durabilidade e resistência à carga.',
+    relatedPath: '/engenharia-civil/servicos/pavimentacao',
+    relatedLabel: 'Projeto de pavimentação',
   },
   {
     term: 'Recalque de fundação',
     definition: 'Movimento de afundamento de parte ou de toda uma edificação, causado por acomodação do solo sob a fundação. É uma das causas mais comuns de fissuras estruturais em construções.',
   },
   {
-    term: 'RIT — Relatório de Impacto no Trânsito',
+    term: 'RIT (Relatório de Impacto no Trânsito)',
     definition: 'Estudo técnico que avalia o efeito de um empreendimento sobre o trânsito da região, incluindo acessos, geometria viária e capacidade das vias no entorno.',
+    relatedPath: '/engenharia-civil/documentacao/estudos-e-planos',
+    relatedLabel: 'Estudos e planos',
   },
   {
     term: 'Topografia planialtimétrica',
@@ -79,5 +110,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: 'Volumetria (terraplenagem)',
     definition: 'Cálculo do volume de terra que precisa ser movimentado num projeto de terraplenagem, considerando o que será cortado e o que será aterrado, para equilibrar a movimentação e reduzir o custo de transporte de material.',
+    relatedPath: '/engenharia-civil/servicos/terraplenagem',
+    relatedLabel: 'Projeto de terraplenagem',
   },
 ];

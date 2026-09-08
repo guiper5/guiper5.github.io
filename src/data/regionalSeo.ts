@@ -83,8 +83,8 @@ export const regionalSeoData: RegionalSeoData[] = [
       ],
       bullets: [
         'Estudo de viabilidade técnica de terrenos e empreendimentos',
-        'EIV — Estudo de Impacto de Vizinhança',
-        'RIT — Relatório de Impacto no Trânsito',
+        'EIV (Estudo de Impacto de Vizinhança)',
+        'RIT (Relatório de Impacto no Trânsito)',
         'Segunda opinião técnica sobre projetos existentes',
         'Apoio técnico a escritórios de arquitetura e engenharia',
       ],
@@ -161,8 +161,8 @@ export const regionalSeoData: RegionalSeoData[] = [
       ],
       bullets: [
         'Estudo de viabilidade técnica de terrenos',
-        'EIV — Estudo de Impacto de Vizinhança',
-        'RIT — Relatório de Impacto no Trânsito',
+        'EIV (Estudo de Impacto de Vizinhança)',
+        'RIT (Relatório de Impacto no Trânsito)',
         'Revisão técnica de projetos em desenvolvimento',
         'Suporte contínuo a escritórios parceiros',
       ],

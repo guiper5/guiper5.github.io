@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -68,6 +69,15 @@ const ParaQuem = () => {
               {seg.cta}
               <ArrowRight aria-hidden="true" className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </button>
+
+            <Link
+              to={seg.link.to}
+              className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm focus-ring group"
+              style={{ color: 'var(--amber-d)', fontFamily: 'Instrument Sans, sans-serif', fontWeight: 600 }}
+            >
+              {seg.link.label}
+              <ArrowRight aria-hidden="true" className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
 
           {/* Visual — big number */}

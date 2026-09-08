@@ -10,6 +10,9 @@ export default {
     "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
+  // As classes de stagger são compostas dinamicamente (`delay-${i + 1}`),
+  // então o purge do Tailwind não as enxerga no código-fonte.
+  safelist: [{ pattern: /^delay-[1-8]$/ }],
   theme: {
     container: {
       center: true,
