@@ -6,10 +6,15 @@ interface SEOMeta {
   keywords?: string;
   canonicalPath: string;
   ogImage?: string;
+  /** Padrão: 'index, follow'. Use 'noindex, follow' em páginas que não devem ser indexadas. */
+  robots?: string;
   jsonLd?: object | object[];
 }
 
 const SITE_URL = 'https://per5.com.br';
+
+const DEFAULT_KEYWORDS =
+  'engenharia civil, projeto de infraestrutura, terraplenagem, drenagem pluvial, pavimentação, projeto urbanístico, PER5';
 
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
@@ -41,15 +46,22 @@ export function useSEO(meta: SEOMeta) {
     const canonicalUrl = `${SITE_URL}${meta.canonicalPath}`;
     const ogImage = meta.ogImage || `${SITE_URL}/og-image.png`;
 
+    // Todos os campos gerenciados são reescritos em toda rota (com fallback),
+    // senão a meta da página anterior sobrevive ao unmount e vaza para a próxima.
     document.title = meta.title;
     upsertMeta('name', 'description', meta.description);
-    if (meta.keywords) upsertMeta('name', 'keywords', meta.keywords);
+    upsertMeta('name', 'keywords', meta.keywords || DEFAULT_KEYWORDS);
+    upsertMeta('name', 'robots', meta.robots || 'index, follow');
     upsertLink('canonical', canonicalUrl);
 
     upsertMeta('property', 'og:title', meta.title);
     upsertMeta('property', 'og:description', meta.description);
     upsertMeta('property', 'og:url', canonicalUrl);
     upsertMeta('property', 'og:image', ogImage);
+
+    upsertMeta('name', 'twitter:title', meta.title);
+    upsertMeta('name', 'twitter:description', meta.description);
+    upsertMeta('name', 'twitter:image', ogImage);
 
     const scriptId = 'seo-jsonld-route';
     document.getElementById(scriptId)?.remove();
@@ -64,5 +76,16 @@ export function useSEO(meta: SEOMeta) {
     return () => {
       document.getElementById(scriptId)?.remove();
     };
-  }, [meta.title, meta.description, meta.keywords, meta.canonicalPath, meta.ogImage, meta.jsonLd]);
+    // jsonLd é reconstruído a cada render nos templates; comparar pelo conteúdo
+    // evita remover e reinjetar o <script> sem necessidade.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    meta.title,
+    meta.description,
+    meta.keywords,
+    meta.canonicalPath,
+    meta.ogImage,
+    meta.robots,
+    JSON.stringify(meta.jsonLd),
+  ]);
 }

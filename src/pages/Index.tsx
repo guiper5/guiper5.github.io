@@ -7,6 +7,7 @@ import Hero from '@/components/Hero';
 import StatsBar from '@/components/StatsBar';
 import Services from '@/components/Services';
 import PorQue from '@/components/PorQue';
+import SalaTecnica from '@/components/SalaTecnica';
 import ParaQuem from '@/components/ParaQuem';
 import Portfolio from '@/components/Portfolio';
 import Processo from '@/components/Processo';
@@ -18,7 +19,7 @@ const Index = () => {
   const location = useLocation();
 
   useSEO({
-    title: 'PER5 — Projetos de Infraestrutura Civil | Campinas, SP',
+    title: 'PER5 · Projetos de Infraestrutura Civil | Campinas, SP',
     description: 'Projetos de infraestrutura civil em Campinas e todo o Brasil: terraplenagem, drenagem, pavimentação e urbanismo com ART e atendimento direto.',
     keywords: 'projeto de terraplenagem, projeto de drenagem pluvial, projeto de pavimentação, projeto urbanístico, engenharia civil Campinas, topografia Campinas, regularização de obras',
     canonicalPath: '/',
@@ -75,6 +76,7 @@ const Index = () => {
           <StatsBar />
           <Services />
           <PorQue />
+          <SalaTecnica />
           <ParaQuem />
           <Portfolio />
           <Processo />

@@ -204,7 +204,7 @@ const CTA = () => {
                   <div>
                     <Label htmlFor="area">{tx.labels.area} <Req /></Label>
                     <select id="area" name="area" required aria-describedby="area-help" className="input-per5">
-                      <option value="">—</option>
+                      <option value="">{tx.selectPlaceholder}</option>
                       {tx.area.map((opt) => <option key={opt}>{opt}</option>)}
                     </select>
                     <p id="area-help" className="sr-only">{tx.requiredField}</p>
@@ -212,7 +212,7 @@ const CTA = () => {
                   <div>
                     <Label htmlFor="prazo">{tx.labels.prazo} <Req /></Label>
                     <select id="prazo" name="prazo" required aria-describedby="prazo-help" className="input-per5">
-                      <option value="">—</option>
+                      <option value="">{tx.selectPlaceholder}</option>
                       {tx.prazo.map((opt) => <option key={opt}>{opt}</option>)}
                     </select>
                     <p id="prazo-help" className="sr-only">{tx.requiredField}</p>
