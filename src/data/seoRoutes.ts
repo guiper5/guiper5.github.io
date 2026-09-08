@@ -86,12 +86,10 @@ const PRIORITY_BY_CATEGORY = {
 } as const;
 
 /**
- * Fonte única de verdade das rotas indexáveis.
+ * Fonte única das rotas do site.
  *
- * Consumida por `scripts/build-seo.mts` para gerar sitemap.xml, llms.txt e a
- * injeção de <head> estático por URL. O sitemap era mantido à mão, e como as
- * páginas ocultas dependem dele para serem descobertas, esquecer uma entrada
- * significava publicar uma página invisível.
+ * Consumida por `scripts/build-seo.mts` para gerar sitemap.xml, llms.txt e o
+ * <head> estático de cada URL. Rota nova precisa ser registrada aqui.
  */
 export const seoRoutes: SeoRoute[] = [
   HOME,

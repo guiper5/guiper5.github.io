@@ -1,21 +1,13 @@
 /**
- * Pós-build de SEO/AEO.
+ * Pós-build. Sobre `dist/`, gera:
+ *   1. um index.html por rota, com o <head> daquela página;
+ *   2. sitemap.xml a partir do registro de rotas;
+ *   3. llms.txt.
  *
- * O site é uma SPA sem SSR: sem este passo, todas as URLs servem o <head> da
- * home no HTML inicial, e só o React (depois de executar) corrige title,
- * canonical e Open Graph. Crawler que não executa JS, e a maior parte dos
- * bots de IA não executa, nunca vê a meta correta da página.
+ * Não renderiza o corpo da página: o <div id="root"> segue vazio no HTML
+ * estático, como em qualquer SPA sem SSR.
  *
- * O que este script faz sobre `dist/`:
- *   1. escreve um index.html por rota, com o <head> daquela página;
- *   2. gera sitemap.xml a partir do registro de rotas;
- *   3. gera llms.txt para mecanismos de resposta.
- *
- * O que ele NÃO faz: renderizar o corpo da página. O <div id="root"> segue
- * vazio no HTML estático. Isso exigiria prerender completo com navegador
- * headless, decisão adiada conscientemente (ver SITE_REVIEW.md).
- *
- * Escape: SKIP_SEO_BUILD=1 pula tudo, para que uma falha aqui nunca trave o deploy.
+ * SKIP_SEO_BUILD=1 pula o passo inteiro, para que uma falha aqui não trave o deploy.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -204,8 +196,8 @@ async function main() {
 
   let written = 0;
   for (const route of seoRoutes) {
-    // A home é o próprio shell. Reescrevê-la quebraria o 404.html do GitHub Pages,
-    // que é uma cópia deste arquivo.
+    // A home é o próprio shell. Reescrevê-la quebraria o 404.html do GitHub
+    // Pages, que é uma cópia deste arquivo.
     if (route.path === '/') continue;
 
     const outDir = join(DIST, route.path.replace(/^\//, ''));

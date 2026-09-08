@@ -1,31 +1,19 @@
-/**
- * Páginas de cidade para obras fora da região de Campinas.
- *
- * Posicionamento: a PER5 é sediada em Campinas e atende obras em todo o
- * Brasil. O projeto é desenvolvido pela equipe própria, com reuniões técnicas
- * por videoconferência e visita ao terreno quando o trabalho exige. Não
- * enquadrar o atendimento como limitado a uma região.
- *
- * Regra de publicação: uma cidade só entra quando `localContext` e
- * `demandProfile` puderem ser escritos com conhecimento real do município.
- * Quatro cidades bem diferenciadas valem mais do que oito genéricas. Texto
- * intercambiável entre cidades é passivo de ranqueamento, não ativo.
- */
+/** Conteúdo das páginas por cidade. */
 
 export interface CityLocalContext {
-  /** O que de fato move a demanda de obra no município. */
+  /** Perfil econômico do município. */
   economy: string;
-  /** Relevo, solo e bacia: o que muda no projeto por causa do terreno. */
+  /** Relevo, solo e bacia hidrográfica. */
   terrain: string;
-  /** Eixos rodoviários e logísticos reais. */
+  /** Eixos rodoviários e logísticos. */
   corridors: string[];
-  /** Instrumentos e instâncias que pesam na aprovação. */
+  /** Instrumentos e órgãos envolvidos na aprovação. */
   regulatory: string[];
 }
 
 export interface CityDemandItem {
   demand: string;
-  /** Por que essa demanda é comum NESTA cidade. Não pode servir para outra. */
+  /** Contexto local dessa demanda. */
   whyHere: string;
 }
 

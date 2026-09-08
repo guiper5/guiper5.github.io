@@ -11,11 +11,7 @@ interface DataTableProps {
   dark?: boolean;
 }
 
-/**
- * Tabela comparativa das páginas de SEO. Tabelas e comparações têm taxa de
- * citação mais alta por mecanismos de resposta, então vale mantê-las como
- * <table> semântica de verdade, e não como grid de divs.
- */
+/** Tabela comparativa usada nas páginas de conteúdo. */
 const DataTable = ({ table, dark = false }: DataTableProps) => (
   <div
     className="overflow-x-auto rounded-sm"

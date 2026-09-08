@@ -28,14 +28,7 @@ export interface SalaTecnicaSegment {
   to: string;
 }
 
-/**
- * Conteúdo da página /engenharia-civil/sala-tecnica.
- *
- * Fronteira de posicionamento: esta página é escopada por MODELO DE TRABALHO
- * (como o serviço funciona, para qualquer segmento). A página
- * /engenharia-civil/para/escritorios-de-arquitetura é escopada por PÚBLICO.
- * Nenhum parágrafo deve poder migrar de uma para a outra sem edição.
- */
+/** Conteúdo da página /engenharia-civil/sala-tecnica. */
 export const salaTecnicaData = {
   path: '/engenharia-civil/sala-tecnica',
   navLabel: 'Sala Técnica',

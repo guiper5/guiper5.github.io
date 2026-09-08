@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSectionNav } from '@/hooks/useSectionNav';
 
-/**
- * Páginas de conteúdo que ficam fora do menu principal. O rodapé é o único
- * lugar do site visível que aponta para elas. Sem isso o cluster inteiro
- * seria órfão, e página órfã ranqueia mal por mais bem escrita que seja.
- */
+/** Páginas de conteúdo que não aparecem no menu principal. */
 const moreLinks: { to: string; pt: string; en: string }[] = [
   { to: '/engenharia-civil/sala-tecnica', pt: 'Sala Técnica', en: 'Sala Técnica' },
   { to: '/engenharia-civil/cidades', pt: 'Cidades atendidas', en: 'Service areas' },
