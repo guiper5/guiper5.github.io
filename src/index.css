@@ -124,7 +124,7 @@
 
   body {
     font-family: 'Instrument Sans';
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.65;
     color: var(--pedra);
     background-color: var(--areia);
@@ -180,7 +180,7 @@
   /* ── Labels/Tags (uppercase + tracking) ── */
   .label {
     font-family: 'Instrument Sans', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -190,7 +190,7 @@
   .eyebrow {
     display: block;
     font-family: 'Instrument Sans', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -201,7 +201,7 @@
   .eyebrow-light {
     display: block;
     font-family: 'Instrument Sans', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -217,7 +217,7 @@
     background: var(--amber);
     color: var(--terra);
     font-family: 'Instrument Sans', sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     padding: 12px 24px;
     border-radius: 2px;
@@ -238,7 +238,7 @@
     background: transparent;
     color: var(--areia);
     font-family: 'Instrument Sans', sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 500;
     padding: 11px 22px;
     border-radius: 2px;
@@ -256,7 +256,7 @@
     background: transparent;
     color: var(--amber);
     font-family: 'Instrument Sans', sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 500;
     padding: 11px 22px;
     border-radius: 2px;
@@ -325,7 +325,7 @@
   .input-per5 {
     width: 100%;
     font-family: 'Instrument Sans', sans-serif;
-    font-size: 16px;
+    font-size: 17px;
     color: var(--madeira);
     background: var(--white);
     border: 1.5px solid var(--areia-d);

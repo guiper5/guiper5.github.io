@@ -82,7 +82,7 @@ const Portfolio = () => {
                         className="absolute inset-x-0 bottom-0 px-5 py-4"
                         style={{ background: 'rgba(0,0,0,0.6)' }}
                       >
-                        <div className="label mb-1" style={{ color: 'var(--amber-l)', fontSize: '10px' }}>
+                        <div className="label mb-1" style={{ color: 'var(--amber-l)', fontSize: '11px' }}>
                           {p.tag}
                         </div>
                         <h3 className="text-lg leading-tight" style={{ color: 'var(--areia)', fontFamily: 'Barlow Condensed, sans-serif', textTransform: 'uppercase' }}>

@@ -25,10 +25,10 @@ const PorQue = () => {
             >
               {tx.title}
             </h2>
-            <p className="leading-relaxed mb-6" style={{ color: 'var(--fumo)', fontSize: '16px', fontFamily: 'Instrument Sans, sans-serif' }}>
+            <p className="leading-relaxed mb-6" style={{ color: 'var(--fumo)', fontSize: '18px', fontFamily: 'Instrument Sans, sans-serif' }}>
               {tx.body1}
             </p>
-            <p className="leading-relaxed mb-8" style={{ color: 'var(--fumo)', fontSize: '16px', fontFamily: 'Instrument Sans, sans-serif' }}>
+            <p className="leading-relaxed mb-8" style={{ color: 'var(--fumo)', fontSize: '18px', fontFamily: 'Instrument Sans, sans-serif' }}>
               {tx.body2}
             </p>
 

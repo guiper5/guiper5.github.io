@@ -26,7 +26,7 @@ const StatsBar = () => {
                   0{s.suffix}
                 </span>
               </div>
-              <div className="label" style={{ color: 'rgba(26,19,16,0.70)', fontSize: '10px' }}>
+              <div className="label" style={{ color: 'rgba(26,19,16,0.70)', fontSize: '11px' }}>
                 {s.label}
               </div>
             </div>

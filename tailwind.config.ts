@@ -48,6 +48,12 @@ export default {
         body:    ['Instrument Sans', 'sans-serif'],
       },
       fontSize: {
+        /* Escala de texto ampliada para leitura (padrão Tailwind: 12/14/16/18/20px) */
+        'xs':   ['0.8125rem', { lineHeight: '1.25rem' }],  // 13px
+        'sm':   ['1rem',      { lineHeight: '1.5rem' }],   // 16px
+        'base': ['1.125rem',  { lineHeight: '1.75rem' }],  // 18px
+        'lg':   ['1.25rem',   { lineHeight: '1.875rem' }], // 20px
+        'xl':   ['1.375rem',  { lineHeight: '2rem' }],     // 22px
         'display': ['clamp(44px,5.5vw,80px)', { lineHeight: '1.05', letterSpacing: '0.01em' }],
         'section': ['clamp(32px,4vw,52px)',   { lineHeight: '1.1',  letterSpacing: '0.01em' }],
       },
