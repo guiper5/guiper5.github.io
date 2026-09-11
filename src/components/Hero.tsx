@@ -95,7 +95,7 @@ const Hero = () => {
               className="mb-10 max-w-xl leading-relaxed"
               style={{
                 fontFamily: 'Instrument Sans, sans-serif',
-                fontSize: '17px',
+                fontSize: '19px',
                 color: 'var(--fumo)',
                 animation: 'slideUp 0.8s 1s both',
               }}

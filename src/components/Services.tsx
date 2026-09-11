@@ -188,7 +188,7 @@ const Services = () => {
                     </div>
                     <span
                       className="label rounded-sm px-2 py-1"
-                      style={{ color: 'var(--amber-d)', background: 'rgba(192,132,89,0.12)', fontSize: '10px' }}
+                      style={{ color: 'var(--amber-d)', background: 'rgba(192,132,89,0.12)', fontSize: '11px' }}
                     >
                       {service.note}
                     </span>
