@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ArrowRight, CheckCircle, MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { track } from '@/lib/analytics';
 
 type FormState = 'idle' | 'sending' | 'success' | 'error';
 const whatsappHref = 'https://wa.me/5519991508664';
@@ -31,8 +32,10 @@ const CTA = () => {
         method: 'POST', body: data,
         headers: { Accept: 'application/json' },
       });
-      if (res.ok) { setFormState('success'); setTelefone(''); (e.target as HTMLFormElement).reset(); }
-      else setFormState('error');
+      if (res.ok) {
+        track('generate_lead', { form_name: 'orcamento', page_path: window.location.pathname });
+        setFormState('success'); setTelefone(''); (e.target as HTMLFormElement).reset();
+      } else setFormState('error');
     } catch { setFormState('error'); }
   };
 

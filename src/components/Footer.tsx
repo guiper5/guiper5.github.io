@@ -2,6 +2,7 @@ import { MessageCircle, Instagram, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSectionNav } from '@/hooks/useSectionNav';
+import { OPEN_CONSENT_EVENT } from '@/lib/analytics';
 
 /** Páginas de conteúdo que não aparecem no menu principal. */
 const moreLinks: { to: string; pt: string; en: string }[] = [
@@ -238,7 +239,30 @@ const Footer = () => {
           className="pt-8 flex flex-col md:flex-row justify-between items-center gap-3 text-xs"
           style={{ borderTop: '1px solid rgba(244,237,230,0.08)', color: 'var(--fumo)', fontFamily: 'Instrument Sans, sans-serif' }}
         >
-          <p>{tx.copyright}</p>
+          <div className="flex flex-col items-center gap-1 md:items-start">
+            <p>{tx.copyright}</p>
+            <p className="flex gap-4">
+              <Link
+                to="/politica-de-privacidade"
+                className="transition-colors duration-200"
+                style={{ color: 'var(--fumo)' }}
+                onMouseEnter={hoverIn}
+                onMouseLeave={hoverOut}
+              >
+                {lang === 'pt' ? 'Política de Privacidade' : 'Privacy Policy'}
+              </Link>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_EVENT))}
+                className="transition-colors duration-200"
+                style={{ color: 'var(--fumo)' }}
+                onMouseEnter={hoverIn}
+                onMouseLeave={hoverOut}
+              >
+                {lang === 'pt' ? 'Preferências de cookies' : 'Cookie preferences'}
+              </button>
+            </p>
+          </div>
           <p>
             {tx.developedBy}{' '}
             <a

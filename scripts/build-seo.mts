@@ -160,6 +160,7 @@ function renderLlmsTxt(routes: SeoRoute[]): string {
     'hub',
     'cidade',
     'glossario',
+    'institucional',
   ];
 
   const sections = order
