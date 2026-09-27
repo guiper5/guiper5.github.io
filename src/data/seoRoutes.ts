@@ -14,7 +14,8 @@ export type SeoRouteKind =
   | 'servico'
   | 'segmento'
   | 'documentacao'
-  | 'glossario';
+  | 'glossario'
+  | 'institucional';
 
 export interface SeoRoute {
   path: string;
@@ -79,6 +80,17 @@ const GLOSSARIO: SeoRoute = {
   priority: 0.6,
 };
 
+const PRIVACIDADE: SeoRoute = {
+  path: '/politica-de-privacidade',
+  label: 'Política de Privacidade',
+  kind: 'institucional',
+  title: 'Política de Privacidade | PER5',
+  description:
+    'Como a PER5 usa cookies e o Google Analytics 4, como trata os dados do formulário de orçamento e como exercer seus direitos pela LGPD.',
+  updated: '2026-09-27',
+  priority: 0.3,
+};
+
 const PRIORITY_BY_CATEGORY = {
   servico: 0.7,
   segmento: 0.7,
@@ -131,6 +143,7 @@ export const seoRoutes: SeoRoute[] = [
   })),
 
   GLOSSARIO,
+  PRIVACIDADE,
 ];
 
 export const SECTION_TITLES: Record<SeoRouteKind, string> = {
@@ -143,4 +156,5 @@ export const SECTION_TITLES: Record<SeoRouteKind, string> = {
   hub: 'Cidades atendidas',
   cidade: 'Páginas por cidade',
   glossario: 'Glossário',
+  institucional: 'Institucional',
 };

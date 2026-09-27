@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import AnalyticsRouteTracker from "./components/AnalyticsRouteTracker";
+import CookieConsent from "./components/CookieConsent";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import EngenhariaRegiao19 from "./pages/seo/EngenhariaRegiao19";
@@ -16,6 +18,7 @@ import Glossario from "./pages/seo/Glossario";
 import SalaTecnicaPage from "./pages/seo/SalaTecnicaPage";
 import CidadesHub from "./pages/seo/CidadesHub";
 import CidadeRoute from "./pages/seo/CidadeRoute";
+import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 
 const queryClient = new QueryClient();
 
@@ -38,9 +41,12 @@ const App = () => (
           <Route path="/engenharia-civil/sala-tecnica" element={<SalaTecnicaPage />} />
           <Route path="/engenharia-civil/cidades" element={<CidadesHub />} />
           <Route path="/engenharia-civil/cidades/:slug" element={<CidadeRoute />} />
+          <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <AnalyticsRouteTracker />
+        <CookieConsent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
